@@ -13,5 +13,13 @@ namespace DecisionTime.CoreTests
 
             game.Player.ShouldBeOfType<Player>();
         }
+
+        [Fact]
+        public void HaveDistrictList()
+        {
+            var game = new Game();
+
+            game.Districts.ShouldNotBeNull();
+        }
     }
 }
