@@ -19,7 +19,7 @@ namespace DecisionTime.CoreTests
         public void AddCitizen()
         {
             var district = new District();
-            var testCitizen = new Citizen();
+            var testCitizen = new Citizen("Bob");
 
             district.AddCitizen(testCitizen);
 
