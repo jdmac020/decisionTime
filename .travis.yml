@@ -6,7 +6,7 @@ sudo: required
 # The version of Ubuntu to run the Travis virtual machine -- needed for .NET Core
 dist: xenial
 # Your SDK version, not your run-time version
-dotnet: 2.0
+dotnet: 2.1.202
 script: # These commands are executed in the Travis VM just like you would on your local machine
     # Use a "cd" command to move the Travis command line prompt into your solution directory
     - cd /home/travis/build/jdmac020/decisionTime/decisionTime/
