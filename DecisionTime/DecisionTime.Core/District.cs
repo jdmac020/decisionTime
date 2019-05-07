@@ -12,5 +12,10 @@ namespace DecisionTime.Core
         {
             Citizens = new List<Citizen>();
         }
+
+        public void AddCitizen(Citizen newCitizen)
+        {
+            Citizens.Add(newCitizen);
+        }
     }
 }

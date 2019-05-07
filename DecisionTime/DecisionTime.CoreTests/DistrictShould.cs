@@ -14,5 +14,16 @@ namespace DecisionTime.CoreTests
 
             district.Citizens.ShouldBeOfType<List<Citizen>>();
         }
+        
+        [Fact]
+        public void AddCitizen()
+        {
+            var district = new District();
+            var testCitizen = new Citizen();
+
+            district.AddCitizen(testCitizen);
+
+            district.Citizens.Count.ShouldBe(1);
+        }
     }
 }
