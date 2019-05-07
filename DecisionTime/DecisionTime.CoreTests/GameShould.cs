@@ -1,5 +1,6 @@
 using DecisionTime.Core;
 using Shouldly;
+using System.Collections.Generic;
 using Xunit;
 
 namespace DecisionTime.CoreTests
@@ -19,7 +20,7 @@ namespace DecisionTime.CoreTests
         {
             var game = new Game();
 
-            game.Districts.ShouldNotBeNull();
+            game.Districts.ShouldBeOfType<List<District>>();
         }
     }
 }
