@@ -22,5 +22,15 @@ namespace DecisionTime.CoreTests
 
             game.Districts.ShouldBeOfType<List<District>>();
         }
+
+        [Fact]
+        public void PopulateDistricts()
+        {
+            var game = new Game();
+
+            game.GenerateDistricts();
+
+            game.Districts.Count.ShouldNotBe(0);
+        }
     }
 }

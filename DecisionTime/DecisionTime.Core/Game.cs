@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DecisionTime.Core
 {
@@ -11,6 +12,20 @@ namespace DecisionTime.Core
         {
             Player = new Player();
             Districts = new List<District>();
+        }
+
+        public void GenerateDistricts()
+        {
+            var newDistrict = new District
+            {
+                Citizens = new List<Citizen>
+                {
+                    new Citizen("Bob"),
+                    new Citizen("Jane")
+                }
+            };
+
+            Districts.Add(newDistrict);
         }
     }
 }
