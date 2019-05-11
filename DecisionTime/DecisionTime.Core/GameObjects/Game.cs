@@ -18,45 +18,33 @@ namespace DecisionTime.Core
 
         public void GenerateDistrict()
         {
-            List<Citizen> citizens = null;
-
-            switch (Difficulty)
-            {
-                case GameLevel.Easy:
-                    citizens = GenerateFavorableCitizens();
-                    break;
-                case GameLevel.Normal:
-                    citizens = GenerateIndifferentCitizens();
-                    break;
-                default:
-                    break;
-            }
 
             var newDistrict = new District
             {
-                Citizens = citizens
+                Citizens = GenerateCitizens()
             };
 
             Districts.Add(newDistrict);
         }
 
-        private List<Citizen> GenerateFavorableCitizens()
+        private List<Citizen> GenerateCitizens()
         {
-            return new List<Citizen>
-            {
-                new Citizen("Bob", Attitude.Favorable),
-                new Citizen("Jane", Attitude.Favorable),
-                new Citizen("Terry")
-            };
-        }
+            Attitude districtAttitude = Attitude.Indifferent;
 
-        private List<Citizen> GenerateIndifferentCitizens()
-        {
+            switch (Difficulty)
+            {
+                case GameLevel.Easy:
+                    districtAttitude = Attitude.Favorable;
+                    break;
+                default:
+                    break;
+            }
+
             return new List<Citizen>
             {
-                new Citizen("Bob"),
-                new Citizen("Jane"),
-                new Citizen("Terry")
+                new Citizen("Bob", districtAttitude),
+                new Citizen("Jane", districtAttitude),
+                new Citizen("Terry", districtAttitude)
             };
         }
     }
