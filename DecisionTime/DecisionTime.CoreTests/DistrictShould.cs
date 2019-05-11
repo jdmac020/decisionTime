@@ -25,5 +25,13 @@ namespace DecisionTime.CoreTests
 
             district.Citizens.Count.ShouldBe(1);
         }
+
+        [Fact]
+        public void StartWithIndifferentAttitude()
+        {
+            var district = new District();
+
+            district.Status.Attitude.ShouldBe(Attitudes.Indifferent);
+        }
     }
 }
