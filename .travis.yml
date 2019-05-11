@@ -24,5 +24,5 @@ before_deploy:
 deploy:
   provider: releases
   api_key: $deploy_token
-  file: DecisionTime.ThrowBack.dll
+  file: /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/Debug/netcoreapp2.0/DecisionTime.ThrowBack.dll
   skip_cleanup: true
