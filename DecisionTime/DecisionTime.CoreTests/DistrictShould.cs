@@ -89,5 +89,20 @@ namespace DecisionTime.CoreTests
 
             district.CurrentStatus.Attitude.ShouldBe(Attitudes.Indifferent);
         }
+
+        [Fact]
+        public void UpdateAttitudeToIndifferentWhenNoMajority()
+        {
+            var district = new District();
+            district.CurrentStatus.Attitude = Attitudes.Favorable;
+            district.AddCitizen(CreateCitizen("Bob"));
+            district.AddCitizen(CreateCitizen("Jane", Attitudes.Unfavorable));
+            district.AddCitizen(CreateCitizen("Terry", Attitudes.Favorable));
+
+            district.UpdateAttitude();
+
+            district.CurrentStatus.Attitude.ShouldBe(Attitudes.Indifferent);
+
+        }
     }
 }

@@ -51,6 +51,10 @@ namespace DecisionTime.Core
             {
                 CurrentStatus.Attitude = maxValue.Key;
             }
+            else
+            {
+                CurrentStatus.Attitude = Attitudes.Indifferent;
+            }
 
             //CurrentStatus.Attitude = maxValue.Key;
 
