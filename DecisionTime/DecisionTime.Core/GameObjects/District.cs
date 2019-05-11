@@ -23,19 +23,7 @@ namespace DecisionTime.Core
         public void UpdateAttitude()
         {
             var map = new Dictionary<Attitudes, int>();
-
-            foreach (var citizen in Citizens)
-            {
-                var attitude = citizen.CurrentStatus.Attitude;
-                if (map.ContainsKey(attitude))
-                {
-                    map[attitude] = map[attitude] + 1;
-                }
-                else
-                {
-                    map.Add(attitude, 1);
-                }
-            }
+            LoadAttitudeMap(map);
 
             var maxValue = map.First();
 
@@ -55,12 +43,22 @@ namespace DecisionTime.Core
             {
                 CurrentStatus.Attitude = Attitudes.Indifferent;
             }
+        }
 
-            //CurrentStatus.Attitude = maxValue.Key;
-
-            //CurrentStatus.Attitude = map.Aggregate((first, next) => 
-            //    first.Value > next.Value ? first : next
-            //    ).Key;
+        private void LoadAttitudeMap(Dictionary<Attitudes, int> map)
+        {
+            foreach (var citizen in Citizens)
+            {
+                var attitude = citizen.CurrentStatus.Attitude;
+                if (map.ContainsKey(attitude))
+                {
+                    map[attitude] = map[attitude] + 1;
+                }
+                else
+                {
+                    map.Add(attitude, 1);
+                }
+            }
         }
     }
 }
