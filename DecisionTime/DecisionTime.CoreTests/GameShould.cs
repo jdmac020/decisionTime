@@ -1,6 +1,7 @@
 using DecisionTime.Core;
 using Shouldly;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace DecisionTime.CoreTests
@@ -31,6 +32,26 @@ namespace DecisionTime.CoreTests
             game.GenerateDistrict();
 
             game.Districts.Count.ShouldNotBe(0);
+        }
+
+        [Fact]
+        public void CreateIndifferentDistrictOnNormalDifficulty()
+        {
+            var game = new Game();
+
+            game.GenerateDistrict();
+
+            game.Districts.First().CurrentStatus.Attitude.ShouldBe(Attitudes.Indifferent);
+        }
+
+        [Fact(Skip = "Skipped a test")]
+        public void CreateFavorableDistrictInEasyMode()
+        {
+            var game = new Game(GameLevel.Easy);
+
+            game.GenerateDistrict();
+
+            game.Districts.First().CurrentStatus.Attitude.ShouldBe(Attitudes.Favorable);
         }
     }
 }
