@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DecisionTime.Core
 {
-    public enum Attitudes
+    public enum Attitude
     {
         Indifferent = 0,
         Favorable = 1,

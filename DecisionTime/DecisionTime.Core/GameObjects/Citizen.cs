@@ -7,22 +7,22 @@ namespace DecisionTime.Core
     public class Citizen
     {
         public string Name { get; set; }
-        public Status CurrentStatus { get; set; }
+        public Attitude CurrentAttitude { get; set; }
 
         public Citizen(string name)
         {
             Name = name;
-            CurrentStatus = new Status();
+            CurrentAttitude = Attitude.Indifferent;
         }
 
-        public Citizen(string name, Attitudes desiredAttitude) : this(name)
+        public Citizen(string name, Attitude desiredAttitude) : this(name)
         {
-            CurrentStatus.Attitude = desiredAttitude;
+            CurrentAttitude = desiredAttitude;
         }
 
-        public void UpdateAttitude(Attitudes newAttitude)
+        public void UpdateAttitude(Attitude newAttitude)
         {
-            CurrentStatus.Attitude = newAttitude;
+            CurrentAttitude = newAttitude;
         }
     }
 }

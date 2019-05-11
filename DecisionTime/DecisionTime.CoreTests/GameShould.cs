@@ -41,17 +41,17 @@ namespace DecisionTime.CoreTests
 
             game.GenerateDistrict();
 
-            game.Districts.First().CurrentStatus.Attitude.ShouldBe(Attitudes.Indifferent);
+            game.Districts.First().CurrentAttitude.ShouldBe(Attitude.Indifferent);
         }
 
-        [Fact(Skip = "Redesign citizen")]
+        [Fact(Skip = "District refactor")]
         public void CreateFavorableDistrictInEasyMode()
         {
             var game = new Game(GameLevel.Easy);
 
             game.GenerateDistrict();
 
-            game.Districts.First().CurrentStatus.Attitude.ShouldBe(Attitudes.Favorable);
+            game.Districts.First().CurrentAttitude.ShouldBe(Attitude.Favorable);
         }
     }
 }

@@ -7,12 +7,12 @@ namespace DecisionTime.Core
     public class District
     {
         public List<Citizen> Citizens { get; set; }
-        public Status CurrentStatus { get; set; }
+        public Attitude CurrentAttitude { get; set; }
 
         public District()
         {
             Citizens = new List<Citizen>();
-            CurrentStatus = new Status();
+            CurrentAttitude = Attitude.Indifferent;
         }
 
         public void AddCitizen(Citizen newCitizen)
@@ -22,7 +22,7 @@ namespace DecisionTime.Core
 
         public void UpdateAttitude()
         {
-            var map = new Dictionary<Attitudes, int>();
+            var map = new Dictionary<Attitude, int>();
             LoadAttitudeMap(map);
 
             var prevalentAttitude = GetPrevalentAttitude(map);
@@ -30,11 +30,11 @@ namespace DecisionTime.Core
             SetDistrictAttitude(prevalentAttitude);
         }
         
-        private void LoadAttitudeMap(Dictionary<Attitudes, int> map)
+        private void LoadAttitudeMap(Dictionary<Attitude, int> map)
         {
             foreach (var citizen in Citizens)
             {
-                var attitude = citizen.CurrentStatus.Attitude;
+                var attitude = citizen.CurrentAttitude;
                 if (map.ContainsKey(attitude))
                 {
                     map[attitude] = map[attitude] + 1;
@@ -46,7 +46,7 @@ namespace DecisionTime.Core
             }
         }
 
-        private KeyValuePair<Attitudes,int> GetPrevalentAttitude(Dictionary<Attitudes, int> map)
+        private KeyValuePair<Attitude,int> GetPrevalentAttitude(Dictionary<Attitude, int> map)
         {
             var prevalentAttitude = map.First();
 
@@ -61,15 +61,15 @@ namespace DecisionTime.Core
             return prevalentAttitude;
         }
 
-        private void SetDistrictAttitude(KeyValuePair<Attitudes, int> prevalentAttitude)
+        private void SetDistrictAttitude(KeyValuePair<Attitude, int> prevalentAttitude)
         {
             if (prevalentAttitude.Value > Citizens.Count / 2)
             {
-                CurrentStatus.Attitude = prevalentAttitude.Key;
+                CurrentAttitude = prevalentAttitude.Key;
             }
             else
             {
-                CurrentStatus.Attitude = Attitudes.Indifferent;
+                CurrentAttitude = Attitude.Indifferent;
             }
         }
     }

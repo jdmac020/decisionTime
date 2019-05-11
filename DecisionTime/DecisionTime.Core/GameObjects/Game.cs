@@ -32,7 +32,10 @@ namespace DecisionTime.Core
                     break;
             }
 
-            var newDistrict = new District();
+            var newDistrict = new District
+            {
+                Citizens = citizens
+            };
 
             Districts.Add(newDistrict);
         }
@@ -41,8 +44,8 @@ namespace DecisionTime.Core
         {
             return new List<Citizen>
             {
-                new Citizen("Bob"),
-                new Citizen("Jane"),
+                new Citizen("Bob", Attitude.Favorable),
+                new Citizen("Jane", Attitude.Favorable),
                 new Citizen("Terry")
             };
         }

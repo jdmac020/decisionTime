@@ -21,17 +21,17 @@ namespace DecisionTime.CoreTests
             var testName = "Bob";
             var citizen = new Citizen(testName);
 
-            citizen.CurrentStatus.Attitude.ShouldBe(Attitudes.Indifferent);
+            citizen.CurrentAttitude.ShouldBe(Attitude.Indifferent);
         }
 
         [Fact]
         public void BeAbleToCreatedWithSpecifiedAttitude()
         {
             var testName = "Bob";
-            var desiredAttitude = Attitudes.Favorable;
+            var desiredAttitude = Attitude.Favorable;
             var citizen = new Citizen(testName, desiredAttitude);
             
-            citizen.CurrentStatus.Attitude.ShouldBe(desiredAttitude);
+            citizen.CurrentAttitude.ShouldBe(desiredAttitude);
         }
 
         [Fact]
@@ -40,9 +40,9 @@ namespace DecisionTime.CoreTests
             var testName = "Bob";
             var citizen = new Citizen(testName);
 
-            citizen.UpdateAttitude(Attitudes.Favorable);
+            citizen.UpdateAttitude(Attitude.Favorable);
 
-            citizen.CurrentStatus.Attitude.ShouldBe(Attitudes.Favorable);
+            citizen.CurrentAttitude.ShouldBe(Attitude.Favorable);
         }
     }
 }
