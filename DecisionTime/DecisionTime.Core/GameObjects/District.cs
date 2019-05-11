@@ -25,19 +25,11 @@ namespace DecisionTime.Core
             var map = new Dictionary<Attitudes, int>();
             LoadAttitudeMap(map);
 
-            var maxValue = map.First();
+            var prevalentAttitude = GetPrevalentAttitude(map);
 
-            foreach (var attitude in map)
+            if (prevalentAttitude.Value > Citizens.Count / 2)
             {
-                if (attitude.Value > maxValue.Value)
-                {
-                    maxValue = attitude;
-                }
-            }
-
-            if (maxValue.Value > Citizens.Count / 2)
-            {
-                CurrentStatus.Attitude = maxValue.Key;
+                CurrentStatus.Attitude = prevalentAttitude.Key;
             }
             else
             {
@@ -59,6 +51,21 @@ namespace DecisionTime.Core
                     map.Add(attitude, 1);
                 }
             }
+        }
+
+        private KeyValuePair<Attitudes,int> GetPrevalentAttitude(Dictionary<Attitudes, int> map)
+        {
+            var prevalentAttitude = map.First();
+
+            foreach (var attitude in map)
+            {
+                if (attitude.Value > prevalentAttitude.Value)
+                {
+                    prevalentAttitude = attitude;
+                }
+            }
+
+            return prevalentAttitude;
         }
     }
 }
