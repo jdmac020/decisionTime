@@ -13,5 +13,13 @@ namespace DecisionTime.CoreTests
 
             status.Attitude.ShouldBe("Indifferent");
         }
+
+        [Fact]
+        public void HaveFavorableAttitudeWhenCreatedWithPositive()
+        {
+            var status = new Status("Positive");
+
+            status.Attitude.ShouldBe("Favorable");
+        }
     }
 }

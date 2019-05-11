@@ -8,9 +8,16 @@ namespace DecisionTime.Core
     {
         public string Attitude { get; set; }
 
-        public Status()
+        public Status(string initialState = "Default")
         {
-            Attitude = "Indifferent";
+            if (initialState != "Default")
+            {
+                Attitude = "Favorable";
+            }
+            else
+            {
+                Attitude = "Indifferent";
+            }
         }
     }
 }
