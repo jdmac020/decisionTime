@@ -6,11 +6,13 @@ namespace DecisionTime.Core
 {
     public class Citizen
     {
-        public object Name { get; set; }
+        public string Name { get; set; }
+        public Status CurrentStatus { get; set; }
 
         public Citizen(string name)
         {
             Name = name;
+            CurrentStatus = new Status();
         }
     }
 }

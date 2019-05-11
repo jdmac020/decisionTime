@@ -14,5 +14,14 @@ namespace DecisionTime.CoreTests
 
             citizen.Name.ShouldBe(testName);
         }
+
+        [Fact]
+        public void HaveStatus()
+        {
+            var testName = "Bob";
+            var citizen = new Citizen(testName);
+
+            citizen.CurrentStatus.ShouldBeOfType<Status>();
+        }
     }
 }
