@@ -7,19 +7,31 @@ namespace DecisionTime.Core
     {
         public Player Player { get; set; }
         public List<District> Districts { get; set; }
+        public GameLevel Difficulty { get; }
 
         public Game(GameLevel difficulty = GameLevel.Normal)
         {
             Player = new Player();
             Districts = new List<District>();
+            Difficulty = difficulty;
         }
 
         public void GenerateDistrict()
         {
-            var newDistrict = new District
+            List<Citizen> citizens = null;
+
+            switch (Difficulty)
             {
-                Citizens = GenerateIndifferentCitizens()
-            };
+                case GameLevel.Easy:
+                    break;
+                case GameLevel.Normal:
+                    citizens = GenerateIndifferentCitizens();
+                    break;
+                default:
+                    break;
+            }
+
+            var newDistrict = new District();
 
             Districts.Add(newDistrict);
         }
