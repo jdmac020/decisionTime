@@ -34,18 +34,20 @@ namespace DecisionTime.CoreTests
             district.Status.Attitude.ShouldBe(Attitudes.Indifferent);
         }
 
-        //[Fact]
-        //public void UpdateAttitudeBasedOnCitizens()
-        //{
-        //    var district = new District();
-        //    district.Citizens = new List<Citizen>
-        //    {
-        //        new Citizen("Bob", Attitudes.Favorable)
-        //    };
+        [Fact]
+        public void UpdateAttitudeBasedOnOneCitizen()
+        {
+            var district = new District();
+            var citizen = new Citizen("Bob");
+            citizen.CurrentStatus.Attitude = Attitudes.Favorable;
+            district.Citizens = new List<Citizen>
+            {
+                citizen
+            };
 
-        //    district.UpdateStatus();
+            district.UpdateAttitude();
 
-        //    district.Status.Attitude.ShouldBe(Attitudes.Favorable);
-        //}
+            district.Status.Attitude.ShouldBe(Attitudes.Favorable);
+        }
     }
 }

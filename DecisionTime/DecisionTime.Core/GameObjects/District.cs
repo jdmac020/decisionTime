@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DecisionTime.Core
 {
@@ -16,6 +18,11 @@ namespace DecisionTime.Core
         public void AddCitizen(Citizen newCitizen)
         {
             Citizens.Add(newCitizen);
+        }
+
+        public void UpdateAttitude()
+        {
+            Status.Attitude = Citizens.First().CurrentStatus.Attitude;
         }
     }
 }
