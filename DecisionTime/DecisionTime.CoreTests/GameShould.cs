@@ -44,7 +44,7 @@ namespace DecisionTime.CoreTests
             game.Districts.First().CurrentAttitude.ShouldBe(Attitude.Indifferent);
         }
 
-        [Fact(Skip = "District refactor")]
+        [Fact(Skip = "District Refactor attitude prop")]
         public void CreateFavorableDistrictInEasyMode()
         {
             var game = new Game(GameLevel.Easy);

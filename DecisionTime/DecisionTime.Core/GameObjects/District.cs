@@ -7,12 +7,11 @@ namespace DecisionTime.Core
     public class District
     {
         public List<Citizen> Citizens { get; set; }
-        public Attitude CurrentAttitude { get; set; }
+        public Attitude CurrentAttitude { get { return GetAttitude(); } }
 
         public District()
         {
             Citizens = new List<Citizen>();
-            CurrentAttitude = Attitude.Indifferent;
         }
 
         public void AddCitizen(Citizen newCitizen)
@@ -20,14 +19,16 @@ namespace DecisionTime.Core
             Citizens.Add(newCitizen);
         }
 
-        public void UpdateAttitude()
+        private Attitude GetAttitude()
         {
+            if (Citizens.Count < 1) return Attitude.Indifferent;
+
             var map = new Dictionary<Attitude, int>();
             LoadAttitudeMap(map);
 
             var prevalentAttitude = GetPrevalentAttitude(map);
 
-            SetDistrictAttitude(prevalentAttitude);
+            return GetDistrictAttitude(prevalentAttitude);
         }
         
         private void LoadAttitudeMap(Dictionary<Attitude, int> map)
@@ -61,15 +62,15 @@ namespace DecisionTime.Core
             return prevalentAttitude;
         }
 
-        private void SetDistrictAttitude(KeyValuePair<Attitude, int> prevalentAttitude)
+        private Attitude GetDistrictAttitude(KeyValuePair<Attitude, int> prevalentAttitude)
         {
             if (prevalentAttitude.Value > Citizens.Count / 2)
             {
-                CurrentAttitude = prevalentAttitude.Key;
+                return prevalentAttitude.Key;
             }
             else
             {
-                CurrentAttitude = Attitude.Indifferent;
+                return Attitude.Indifferent;
             }
         }
     }
