@@ -65,7 +65,7 @@ namespace DecisionTime.CoreTests
         }
 
         [Fact]
-        public void UpdateAttitudeBasedOnThreeCitizens()
+        public void UpdateAttitudeBasedOnThreeCitizensClearWinner()
         {
             var district = new District();
             district.AddCitizen(CreateCitizen("Bob"));
@@ -75,6 +75,19 @@ namespace DecisionTime.CoreTests
             district.UpdateAttitude();
 
             district.CurrentStatus.Attitude.ShouldBe(Attitudes.Unfavorable);
+        }
+
+        [Fact]
+        public void UpdateAttitudeBasedOnThreeCitizensNoWinner()
+        {
+            var district = new District();
+            district.AddCitizen(CreateCitizen("Bob"));
+            district.AddCitizen(CreateCitizen("Jane", Attitudes.Unfavorable));
+            district.AddCitizen(CreateCitizen("Terry", Attitudes.Favorable));
+
+            district.UpdateAttitude();
+
+            district.CurrentStatus.Attitude.ShouldBe(Attitudes.Indifferent);
         }
     }
 }

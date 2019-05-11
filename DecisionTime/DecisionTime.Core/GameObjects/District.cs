@@ -37,9 +37,26 @@ namespace DecisionTime.Core
                 }
             }
 
-            CurrentStatus.Attitude = map.Aggregate((first, next) => 
-                first.Value > next.Value ? first : next
-                ).Key;
+            var maxValue = map.First();
+
+            foreach (var attitude in map)
+            {
+                if (attitude.Value > maxValue.Value)
+                {
+                    maxValue = attitude;
+                }
+            }
+
+            if (maxValue.Value > Citizens.Count / 2)
+            {
+                CurrentStatus.Attitude = maxValue.Key;
+            }
+
+            //CurrentStatus.Attitude = maxValue.Key;
+
+            //CurrentStatus.Attitude = map.Aggregate((first, next) => 
+            //    first.Value > next.Value ? first : next
+            //    ).Key;
         }
     }
 }
