@@ -18,14 +18,20 @@ namespace DecisionTime.Core
         {
             var newDistrict = new District
             {
-                Citizens = new List<Citizen>
-                {
-                    new Citizen("Bob"),
-                    new Citizen("Jane")
-                }
+                Citizens = GenerateIndifferentCitizens()
             };
 
             Districts.Add(newDistrict);
+        }
+
+        private List<Citizen> GenerateIndifferentCitizens()
+        {
+            return new List<Citizen>
+            {
+                new Citizen("Bob"),
+                new Citizen("Jane"),
+                new Citizen("Terry")
+            };
         }
     }
 }
