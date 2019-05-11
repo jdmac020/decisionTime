@@ -16,12 +16,23 @@ namespace DecisionTime.CoreTests
         }
 
         [Fact]
-        public void HaveStatus()
+        public void StartWithIndifferentAttitude()
         {
             var testName = "Bob";
             var citizen = new Citizen(testName);
 
-            citizen.CurrentStatus.ShouldBeOfType<Status>();
+            citizen.CurrentStatus.Attitude.ShouldBe(Attitudes.Indifferent);
+        }
+
+        [Fact]
+        public void UpdateAttitude()
+        {
+            var testName = "Bob";
+            var citizen = new Citizen(testName);
+
+            citizen.UpdateAttitude(Attitudes.Favorable);
+
+            citizen.CurrentStatus.Attitude.ShouldBe(Attitudes.Favorable);
         }
     }
 }

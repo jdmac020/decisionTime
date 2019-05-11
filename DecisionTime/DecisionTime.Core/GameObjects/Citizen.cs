@@ -14,5 +14,10 @@ namespace DecisionTime.Core
             Name = name;
             CurrentStatus = new Status();
         }
+
+        public void UpdateAttitude(Attitudes newAttitude)
+        {
+            CurrentStatus.Attitude = newAttitude;
+        }
     }
 }
