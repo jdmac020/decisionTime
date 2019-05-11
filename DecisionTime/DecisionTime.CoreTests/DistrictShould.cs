@@ -34,7 +34,7 @@ namespace DecisionTime.CoreTests
             district.CurrentAttitude.ShouldBe(Attitude.Indifferent);
         }
 
-        [Fact(Skip = "District Refactor attitude prop")]
+        [Fact]
         public void UpdateAttitudeBasedOnOneCitizen()
         {
             var district = new District();
@@ -62,7 +62,7 @@ namespace DecisionTime.CoreTests
             }
         }
 
-        [Fact(Skip = "District Refactor attitude prop")]
+        [Fact]
         public void UpdateAttitudeBasedOnThreeCitizensClearWinner()
         {
             var district = new District();
@@ -73,7 +73,7 @@ namespace DecisionTime.CoreTests
             district.CurrentAttitude.ShouldBe(Attitude.Unfavorable);
         }
 
-        [Fact(Skip = "District Refactor attitude prop")]
+        [Fact]
         public void UpdateAttitudeBasedOnThreeCitizensNoWinner()
         {
             var district = new District();
@@ -84,7 +84,7 @@ namespace DecisionTime.CoreTests
             district.CurrentAttitude.ShouldBe(Attitude.Indifferent);
         }
 
-        [Fact(Skip = "District Refactor attitude prop")]
+        [Fact]
         public void UpdateAttitudeToIndifferentWhenNoMajority()
         {
             var district = new District();
