@@ -28,7 +28,7 @@ namespace DecisionTime.CoreTests
         {
             var game = new Game();
 
-            game.GenerateDistricts();
+            game.GenerateDistrict();
 
             game.Districts.Count.ShouldNotBe(0);
         }

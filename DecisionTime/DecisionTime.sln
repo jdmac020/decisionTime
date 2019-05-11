@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecisionTime.Core", "DecisionTime.Core\DecisionTime.Core.csproj", "{D8B4C853-0C6A-4FD0-9C31-8CC9C3D9983D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecisionTime.Core", "DecisionTime.Core\DecisionTime.Core.csproj", "{D8B4C853-0C6A-4FD0-9C31-8CC9C3D9983D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecisionTime.CoreTests", "DecisionTime.CoreTests\DecisionTime.CoreTests.csproj", "{357533DA-0B6C-42EC-B895-962A43FF44D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecisionTime.CoreTests", "DecisionTime.CoreTests\DecisionTime.CoreTests.csproj", "{357533DA-0B6C-42EC-B895-962A43FF44D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecisionTime.ThrowBack", "DecisionTime.ThrowBack\DecisionTime.ThrowBack.csproj", "{D9F974EC-5539-4A5B-87F9-4D094413F907}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{357533DA-0B6C-42EC-B895-962A43FF44D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{357533DA-0B6C-42EC-B895-962A43FF44D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{357533DA-0B6C-42EC-B895-962A43FF44D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9F974EC-5539-4A5B-87F9-4D094413F907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9F974EC-5539-4A5B-87F9-4D094413F907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9F974EC-5539-4A5B-87F9-4D094413F907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9F974EC-5539-4A5B-87F9-4D094413F907}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

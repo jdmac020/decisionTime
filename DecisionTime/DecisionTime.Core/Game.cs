@@ -14,7 +14,7 @@ namespace DecisionTime.Core
             Districts = new List<District>();
         }
 
-        public void GenerateDistricts()
+        public void GenerateDistrict()
         {
             var newDistrict = new District
             {
