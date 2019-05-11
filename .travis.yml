@@ -26,7 +26,7 @@ deploy:
   provider: releases
   api_key: $deploy_token
   file: 
-    - /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/release/netcoreapp2.0/win10-x64/DecisionTime.ThrowBack
-    - /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/release/netcoreapp2.0/osx.10.12-x64/DecisionTime.ThrowBack
-    - /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/release/netcoreapp2.0/ubuntu.16.10-x64/DecisionTime.ThrowBack
+    - /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/dist/win-x64/DecisionTime.ThrowBack
+    - /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/dist/osx.10.12-x64/DecisionTime.ThrowBack
+    - /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/dist/ubuntu.16.10-x64DecisionTime.ThrowBack
   skip_cleanup: true
