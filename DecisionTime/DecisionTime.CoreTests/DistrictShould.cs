@@ -31,7 +31,7 @@ namespace DecisionTime.CoreTests
         {
             var district = new District();
 
-            district.Status.Attitude.ShouldBe(Attitudes.Indifferent);
+            district.CurrentStatus.Attitude.ShouldBe(Attitudes.Indifferent);
         }
 
         [Fact]
@@ -47,7 +47,34 @@ namespace DecisionTime.CoreTests
 
             district.UpdateAttitude();
 
-            district.Status.Attitude.ShouldBe(Attitudes.Favorable);
+            district.CurrentStatus.Attitude.ShouldBe(Attitudes.Favorable);
+        }
+
+        private Citizen CreateCitizen(string name, Attitudes initialAttitude = Attitudes.Indifferent)
+        {
+            if (initialAttitude == Attitudes.Indifferent)
+            {
+                return new Citizen(name);
+            }
+            else
+            {
+                var citizen = new Citizen(name);
+                citizen.CurrentStatus.Attitude = initialAttitude;
+                return citizen;
+            }
+        }
+
+        [Fact]
+        public void UpdateAttitudeBasedOnThreeCitizens()
+        {
+            var district = new District();
+            district.AddCitizen(CreateCitizen("Bob"));
+            district.AddCitizen(CreateCitizen("Jane", Attitudes.Unfavorable));
+            district.AddCitizen(CreateCitizen("Terry", Attitudes.Unfavorable));
+
+            district.UpdateAttitude();
+
+            district.CurrentStatus.Attitude.ShouldBe(Attitudes.Unfavorable);
         }
     }
 }

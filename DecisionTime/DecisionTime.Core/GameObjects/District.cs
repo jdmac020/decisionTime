@@ -7,12 +7,12 @@ namespace DecisionTime.Core
     public class District
     {
         public List<Citizen> Citizens { get; set; }
-        public Status Status { get; set; }
+        public Status CurrentStatus { get; set; }
 
         public District()
         {
             Citizens = new List<Citizen>();
-            Status = new Status();
+            CurrentStatus = new Status();
         }
 
         public void AddCitizen(Citizen newCitizen)
@@ -22,7 +22,24 @@ namespace DecisionTime.Core
 
         public void UpdateAttitude()
         {
-            Status.Attitude = Citizens.First().CurrentStatus.Attitude;
+            var map = new Dictionary<Attitudes, int>();
+
+            foreach (var citizen in Citizens)
+            {
+                var attitude = citizen.CurrentStatus.Attitude;
+                if (map.ContainsKey(attitude))
+                {
+                    map[attitude] = map[attitude] + 1;
+                }
+                else
+                {
+                    map.Add(attitude, 1);
+                }
+            }
+
+            CurrentStatus.Attitude = map.Aggregate((first, next) => 
+                first.Value > next.Value ? first : next
+                ).Key;
         }
     }
 }
