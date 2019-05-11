@@ -1,32 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Net;
 
 namespace DecisionTime.Core
 {
     public class Status
     {
-        public string Attitude { get; set; }
+        public Attitudes Attitude { get; set; }
 
-        public Status(string initialState = "Default")
+        public Status(Attitudes initialAttitude = Attitudes.Indifferent)
         {
-            SetAttitude(initialState);
-        }
-
-        private void SetAttitude(string initialState)
-        {
-            if (initialState == "Positive")
-            {
-                Attitude = "Favorable";
-            }
-            else if (initialState == "Negative")
-            {
-                Attitude = "Unfavorable";
-            }
-            else
-            {
-                Attitude = "Indifferent";
-            }
+            Attitude = initialAttitude;
         }
     }
 }

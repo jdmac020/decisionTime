@@ -11,23 +11,23 @@ namespace DecisionTime.CoreTests
         {
             var status = new Status();
 
-            status.Attitude.ShouldBe("Indifferent");
+            status.Attitude.ShouldBe(Attitudes.Indifferent);
         }
 
         [Fact]
         public void HaveFavorableAttitudeWhenCreatedWithPositive()
         {
-            var status = new Status("Positive");
+            var status = new Status(Attitudes.Favorable);
 
-            status.Attitude.ShouldBe("Favorable");
+            status.Attitude.ShouldBe(Attitudes.Favorable);
         }
 
         [Fact]
         public void HaveUnfavorableAttitudeWhenCreatedNegative()
         {
-            var status = new Status("Negative");
+            var status = new Status(Attitudes.Unfavorable);
 
-            status.Attitude.ShouldBe("Unfavorable");
+            status.Attitude.ShouldBe(Attitudes.Unfavorable);
         }
     }
 }
