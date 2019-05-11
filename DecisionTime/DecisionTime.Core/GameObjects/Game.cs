@@ -23,6 +23,7 @@ namespace DecisionTime.Core
             switch (Difficulty)
             {
                 case GameLevel.Easy:
+                    citizens = GenerateFavorableCitizens();
                     break;
                 case GameLevel.Normal:
                     citizens = GenerateIndifferentCitizens();
@@ -34,6 +35,16 @@ namespace DecisionTime.Core
             var newDistrict = new District();
 
             Districts.Add(newDistrict);
+        }
+
+        private List<Citizen> GenerateFavorableCitizens()
+        {
+            return new List<Citizen>
+            {
+                new Citizen("Bob"),
+                new Citizen("Jane"),
+                new Citizen("Terry")
+            };
         }
 
         private List<Citizen> GenerateIndifferentCitizens()

@@ -15,6 +15,11 @@ namespace DecisionTime.Core
             CurrentStatus = new Status();
         }
 
+        public Citizen(string name, Attitudes desiredAttitude) : this(name)
+        {
+            CurrentStatus.Attitude = desiredAttitude;
+        }
+
         public void UpdateAttitude(Attitudes newAttitude)
         {
             CurrentStatus.Attitude = newAttitude;

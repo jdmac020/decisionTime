@@ -25,6 +25,16 @@ namespace DecisionTime.CoreTests
         }
 
         [Fact]
+        public void BeAbleToCreatedWithSpecifiedAttitude()
+        {
+            var testName = "Bob";
+            var desiredAttitude = Attitudes.Favorable;
+            var citizen = new Citizen(testName, desiredAttitude);
+            
+            citizen.CurrentStatus.Attitude.ShouldBe(desiredAttitude);
+        }
+
+        [Fact]
         public void UpdateAttitude()
         {
             var testName = "Bob";

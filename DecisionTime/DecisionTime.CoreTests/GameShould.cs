@@ -44,7 +44,7 @@ namespace DecisionTime.CoreTests
             game.Districts.First().CurrentStatus.Attitude.ShouldBe(Attitudes.Indifferent);
         }
 
-        [Fact(Skip = "Redesign")]
+        [Fact(Skip = "Redesign citizen")]
         public void CreateFavorableDistrictInEasyMode()
         {
             var game = new Game(GameLevel.Easy);
