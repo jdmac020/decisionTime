@@ -10,6 +10,11 @@ namespace DecisionTime.Core
 
         public Status(string initialState = "Default")
         {
+            SetAttitude(initialState);
+        }
+
+        private void SetAttitude(string initialState)
+        {
             if (initialState == "Positive")
             {
                 Attitude = "Favorable";
