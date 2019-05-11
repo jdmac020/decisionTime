@@ -27,16 +27,9 @@ namespace DecisionTime.Core
 
             var prevalentAttitude = GetPrevalentAttitude(map);
 
-            if (prevalentAttitude.Value > Citizens.Count / 2)
-            {
-                CurrentStatus.Attitude = prevalentAttitude.Key;
-            }
-            else
-            {
-                CurrentStatus.Attitude = Attitudes.Indifferent;
-            }
+            SetDistrictAttitude(prevalentAttitude);
         }
-
+        
         private void LoadAttitudeMap(Dictionary<Attitudes, int> map)
         {
             foreach (var citizen in Citizens)
@@ -66,6 +59,18 @@ namespace DecisionTime.Core
             }
 
             return prevalentAttitude;
+        }
+
+        private void SetDistrictAttitude(KeyValuePair<Attitudes, int> prevalentAttitude)
+        {
+            if (prevalentAttitude.Value > Citizens.Count / 2)
+            {
+                CurrentStatus.Attitude = prevalentAttitude.Key;
+            }
+            else
+            {
+                CurrentStatus.Attitude = Attitudes.Indifferent;
+            }
         }
     }
 }
