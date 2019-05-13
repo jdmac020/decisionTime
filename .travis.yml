@@ -14,9 +14,9 @@ script: # These commands are executed in the Travis VM just like you would on yo
     - dotnet test
     - cd ./DecisionTime.ThrowBack/
     - dotnet publish -c release -r win-x64 -o bin/dist/win-x64 --self-contained true
-    - zip bin/dist/win-x64
-    - dotnet publish -c release -r osx.10.14-x64 -o bin/dist/osx.10.14-x64 --self-contained true
-    - zip bin/dist/osx.10.14-x64
+    - zip -r win-x64.zip bin/dist/win-x64
+    #- dotnet publish -c release -r osx.10.14-x64 -o bin/dist/osx.10.14-x64 --self-contained true
+    #- zip bin/dist/osx.10.14-x64
     #-  dotnet publish -c release -r ubuntu.16.10-x64 -o bin/dist/ubuntu.16.10-x64
 before_deploy:
     # Set up git user name and tag this commit
@@ -29,6 +29,6 @@ deploy:
   api_key: $deploy_token
   file: 
     - /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/win-x64.zip
-    - /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/osx.10.14-x64.zip
+    #- /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/osx.10.14-x64.zip
     #- /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/dist/ubuntu.16.10-x64/DecisionTime.ThrowBack
   skip_cleanup: true
