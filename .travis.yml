@@ -30,9 +30,11 @@ deploy:
   api_key: $deploy_token
   file: 
     - /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/dist/DecisionTime-win-x64.zip
-    - /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/dist/DecisionTime-osx10dot14-x64.zip
+    - /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/dist/DecisionTime-osx10-14-x64.zip
     #- /home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/dist/ubuntu.16.10-x64/DecisionTime.ThrowBack
   skip_cleanup: true
   prerelease: true
+  name: 'DecisionTime Demo'
+  body: 'Instructions for Play: Find your desired system (Windows10 x64 or MacOS 10.14) and download the zipped folder. Extract all, and find the executable application file named <DecisionTime.Throwback> and double-click.'
   on:
     branch: master
