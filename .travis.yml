@@ -13,17 +13,17 @@ script: # These commands are executed in the Travis VM just like you would on yo
     # if your project has tests, you can skip "restore" and "build" and just use "test" command
     - dotnet test
     - cd ./DecisionTime.ThrowBack/
-    - dotnet publish -c release -r win-x64 -o bin/dist/win-x64 --self-contained true
-    - dotnet publish -c release -r osx.10.14-x64 -o bin/dist/osx-10-14-x64 --self-contained true
+    - dotnet publish -c release -r win-x64 -o bin/dist/DecisionTime-Windows --self-contained true
+    - dotnet publish -c release -r osx.10.14-x64 -o bin/dist/DecisionTime-Mac --self-contained true
     - cd ./bin/dist/
-    - zip -r DecisionTime-win-x64.zip win-x64
-    - zip -r DecisionTime-osx10dot14-x64.zip osx-10-14-x64
+    - zip -r DecisionTime-win-x64.zip DecisionTime-Windows
+    - zip -r DecisionTime-osx10-14-x64.zip DecisionTime-Mac
     #-  dotnet publish -c release -r ubuntu.16.10-x64 -o bin/dist/ubuntu.16.10-x64
 before_deploy:
     # Set up git user name and tag this commit
     - git config --local user.name jdmac020
     - git config --local user.email john.macgregor@gmail.com
-    - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+    - export TRAVIS_TAG=${TRAVIS_TAG:DecisionTime-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
     - git tag $TRAVIS_TAG
 deploy:
   provider: releases
