@@ -15,6 +15,7 @@ script: # These commands are executed in the Travis VM just like you would on yo
     - cd ./DecisionTime.ThrowBack/
     - dotnet tool install --global dotnet-warp
     - PATH=~/opt/bin:$PATH
+    - ECHO $PATH
     #- dotnet publish -c release -r win-x64 -o bin/dist/DecisionTime-Windows --self-contained true
     - dotnet-warp -r win-x64
     - mv DecisionTime.ThrowBack.exe DecisionTimeDemo.exe
