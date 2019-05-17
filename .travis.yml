@@ -13,19 +13,26 @@ script: # These commands are executed in the Travis VM just like you would on yo
     # if your project has tests, you can skip "restore" and "build" and just use "test" command
     - dotnet test
     - cd ./DecisionTime.ThrowBack/
-    - dotnet publish -c release -r win-x64 -o bin/dist/DecisionTime-Windows --self-contained true
-    - dotnet publish -c release -r osx-x64 -o bin/dist/DecisionTime-Mac --self-contained true
-    - cd ./bin/dist/
-    - zip -r DecisionTimeDemo-Win.zip DecisionTime-Windows
-    - zip -r DecisionTimeDemo-Mac.zip DecisionTime-Mac
-    - curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
-    - unzip butler.zip
+    - dotnet tool install --global dotnet-warp
+    #- dotnet publish -c release -r win-x64 -o bin/dist/DecisionTime-Windows --self-contained true
+    - dotnet-warp -r win-x64
+    - mv DecisionTime.ThrowBack.exe DecisionTimeDemo.exe
+    - zip DecisionTime-Windows.zip DecisionTimeDemo.exe
+    - rm DecisionTimeDemo.exe
+    - dotnet-warp -r osx-x64
+    - ls
+    #- dotnet publish -c release -r osx-x64 -o bin/dist/DecisionTime-Mac --self-contained true
+    #- cd ./bin/dist/
+    #- zip -r DecisionTimeDemo-Win.zip DecisionTime-Windows
+    #- zip -r DecisionTimeDemo-Mac.zip DecisionTime-Mac
+    #- curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+    #- unzip butler.zip
     # GNU unzip tends to not set the executable bit even though it's set in the .zip
-    - chmod +x butler
+    #- chmod +x butler
     # just a sanity check run (and also helpful in case you're sharing CI logs)
-    - ./butler -V
-    - ./butler push DecisionTimeDemo-Win.zip jdmac020/decision-time:windows10
-    - ./butler push DecisionTimeDemo-Mac.zip jdmac020/decision-time:osx
+    #- ./butler -V
+    #- ./butler push DecisionTimeDemo-Win.zip jdmac020/decision-time:windows10
+    #- ./butler push DecisionTimeDemo-Mac.zip jdmac020/decision-time:osx
     #- zip -r DecisionTime-osx10-14-x64.zip DecisionTime-Mac
     #-  dotnet publish -c release -r ubuntu.16.10-x64 -o bin/dist/ubuntu.16.10-x64
 #before_deploy:
