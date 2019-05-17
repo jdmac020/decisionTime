@@ -13,7 +13,7 @@ script: # These commands are executed in the Travis VM just like you would on yo
     # if your project has tests, you can skip "restore" and "build" and just use "test" command
     - dotnet test
     - cd ./DecisionTime.ThrowBack/
-    - dotnet tool install --global dotnet-warp
+    - dotnet tool install dotnet-warp
     #- dotnet publish -c release -r win-x64 -o bin/dist/DecisionTime-Windows --self-contained true
     - dotnet-warp -r win-x64
     - mv DecisionTime.ThrowBack.exe DecisionTimeDemo.exe
