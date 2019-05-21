@@ -1,4 +1,5 @@
 ﻿using DecisionTime.Core;
+using DecisionTime.ThrowBack.Helpers;
 using System;
 using static System.Console;
 
@@ -16,6 +17,7 @@ namespace DecisionTime.ThrowBack
             {
                 DisplayHeader();
                 SetupGameRound();
+                BeginRoundWithConsent();
 
                 // turn loop
                 while (entry != "x")
@@ -46,28 +48,14 @@ namespace DecisionTime.ThrowBack
             var name = entry;
 
             SolicitInput("Do You Want an Easy or Normal Game?", "Enter 1 for Easy, 2 for Normal");
-            var difficulty = string.Empty;
-
-            if (entry == "1")
-            {
-                difficulty = "Easy";
-            }
-            if (entry == "2")
-            {
-                difficulty = "normal";
-            }
+            var difficulty = InputParsers.IntToLevelName(entry);
 
             round = new Round(name, difficulty);
-            var response = $"Very well, Councilor {round.PlayerName}; ";
+        }
 
-            if (round.Game.Difficulty == GameLevel.Easy)
-            {
-                response += "We shall take it easy on you.";
-            }
-            else
-            {
-                response += "We shall treat you as one of us.";
-            }
+        private static void BeginRoundWithConsent()
+        {
+            var response = DialogueHelper.WelcomeDialogueHelper(round.PlayerName, round.Game.Difficulty);
 
             PrintOutput(response);
 
@@ -121,12 +109,6 @@ namespace DecisionTime.ThrowBack
             WriteLine();
         }
 
-        private static Game SetupGame(GameLevel difficulty)
-        {
-            Game game = new Game(difficulty);
-            return game;
-        }
-
         private static void DisplayDistrictStats()
         {
             Clear();
@@ -140,16 +122,16 @@ namespace DecisionTime.ThrowBack
 
         private static void DisplayHeader()
         {
-            Console.WriteLine("****************************************");
-            Console.WriteLine("*      The apocalpyse happened!!!      *");
-            Console.WriteLine("*      You Are a District Rep!!!!      *");
-            Console.WriteLine("*   You Got Some Decisions To Make!!   *");
-            Console.WriteLine("*                                      *");
-            Console.WriteLine("*   Press 'x' at any prompt to exit!   *");
-            Console.WriteLine("****************************************");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
+            WriteLine("****************************************");
+            WriteLine("*      The apocalpyse happened!!!      *");
+            WriteLine("*      You Are a District Rep!!!!      *");
+            WriteLine("*   You Got Some Decisions To Make!!   *");
+            WriteLine("*                                      *");
+            WriteLine("*   Press 'x' at any prompt to exit!   *");
+            WriteLine("****************************************");
+            WriteLine();
+            WriteLine();
+            WriteLine();
         }
     }
 }
