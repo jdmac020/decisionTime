@@ -8,6 +8,16 @@ namespace DecisionTime.ThrowBackTests
 {
     public class GameRoundShould
     {
+        private Round _round;
+
+        private void SetupNormalRound()
+        {
+            var player = "Cassandra";
+            var difficulty = "Normal";
+
+            _round = new Round(player, difficulty);
+        }
+
         [Fact]
         public void HavePlayerName()
         {
@@ -22,24 +32,19 @@ namespace DecisionTime.ThrowBackTests
         [Fact]
         public void HaveGameObject()
         {
-            var player = "Cassandra";
-            var difficulty = "normal";
+            SetupNormalRound();
 
-            var round = new Round(player, difficulty);
-
-            round.Game.Difficulty.ShouldBe(GameLevel.Normal);
+            _round.Game.Difficulty.ShouldBe(GameLevel.Normal);
         }
 
         [Fact]
         public void IncrementTurnNumberWhenEndTurnIsCalled()
         {
-            var player = "Cassandra";
-            var difficulty = "normal";
-            var round = new Round(player, difficulty);
+            SetupNormalRound();
 
-            round.EndTurn();
+            _round.EndTurn();
 
-            round.Turn.ShouldBe(2);
+            _round.Turn.ShouldBe(2);
         }
     }
 }
