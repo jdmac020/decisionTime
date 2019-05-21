@@ -9,7 +9,7 @@ namespace DecisionTime.ThrowBackTests
     public class GameRoundShould
     {
         [Fact]
-        public void HavePlayerNameAndDifficulty()
+        public void HavePlayerName()
         {
             var player = "Cassandra";
             var difficulty = "Normal";
@@ -17,7 +17,6 @@ namespace DecisionTime.ThrowBackTests
             var round = new Round(player, difficulty);
 
             round.PlayerName.ShouldBe(player);
-            round.Difficulty.ShouldBe(GameLevel.Normal);
         }
 
         [Fact]
