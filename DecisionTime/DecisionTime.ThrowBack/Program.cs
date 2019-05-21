@@ -12,62 +12,31 @@ namespace DecisionTime.ThrowBack
 
         static void Main(string[] args)
         {
-           
             while (entry != "x")
             {
-                Clear();
                 DisplayHeader();
-                // setup round
                 SetupGameRound();
 
-                if (entry == "1")
+                // turn loop
+                while (entry != "x")
                 {
-                    PrintOutput("You Picked Easy!! We shall be gentle.");
-                    game = SetupGame(GameLevel.Easy);
+                    Clear();
+                    DisplayHeader();
+                    DisplayDistrictStats();
 
-                    DisplayDistrictStats(game);
+                    // present decision
 
-                    SolicitInput("Would You Like To Meet Your Constituents?", "Type y or n");
-
-                    if (entry == "x")
-                    {
-                        PrintOutput("Running away, are you??");
-                        break;
-                    }
-
-                    MeetingThePeople();
-                }
-                else if (entry == "2")
-                {
-                    WriteLine("You Picked Normal!! You must be fun at parties.");
-                    game = SetupGame(GameLevel.Normal);
-
-                    DisplayDistrictStats(game);
-
-                    SolicitInput("Would You Like To Meet Your Constituents?", "Type Y or N");
-
-                    if (entry == "x")
-                    {
-                        PrintOutput("Running away, are you??");
-                        break;
-                    }
-
-                    MeetingThePeople();
-                }
-                else if (entry == "x")
-                {
-                    WriteLine("You've chosen to exit. Goodbye, Scardy-Cat!");
-                    break;
-                }
-                else
-                {
-                    WriteLine("That was not a valid choice--shall we try again?");
+                    WriteLine("Press any key to end turn, or \'x\' to exit game");
+                    entry = ReadLine();
+                    round.EndTurn();
+                    
                 }
 
-                ReadLine();
             }
 
-
+            Clear();
+            DisplayHeader();
+            PrintOutput($"A fond farewell, {round.PlayerName} the Coward!");
             ReadLine();
         }
 
@@ -75,10 +44,22 @@ namespace DecisionTime.ThrowBack
         {
             SolicitInput("What is your name, Councilor?", "Type your name");
             var name = entry;
+
             SolicitInput("Do You Want an Easy or Normal Game?", "Enter 1 for Easy, 2 for Normal");
-            var difficulty = entry;
+            var difficulty = string.Empty;
+
+            if (entry == "1")
+            {
+                difficulty = "Easy";
+            }
+            if (entry == "2")
+            {
+                difficulty = "normal";
+            }
+
             round = new Round(name, difficulty);
             var response = $"Very well, Councilor {round.PlayerName}; ";
+
             if (round.Game.Difficulty == GameLevel.Easy)
             {
                 response += "We shall take it easy on you.";
@@ -87,7 +68,10 @@ namespace DecisionTime.ThrowBack
             {
                 response += "We shall treat you as one of us.";
             }
+
             PrintOutput(response);
+
+            SolicitInput("Are you ready to begin?", "Press any key to start, \'x\' to exit");
         }
 
         private static void MeetingThePeople()
@@ -143,11 +127,13 @@ namespace DecisionTime.ThrowBack
             return game;
         }
 
-        private static void DisplayDistrictStats(Game game)
+        private static void DisplayDistrictStats()
         {
             Clear();
             DisplayHeader();
-            WriteLine($"Your district has {game.Districts[0].Citizens.Count} Citizens, and their overall attitude toward you is {game.Districts[0].CurrentAttitude}.");
+            WriteLine($"Turn #{round.Turn}:");
+            WriteLine($"Your district has {round.Game.Districts[0].Citizens.Count} Citizens.");
+            WriteLine($"Their overall attitude toward you is {round.Game.Districts[0].CurrentAttitude}.");
             WriteLine();
             WriteLine();
         }
