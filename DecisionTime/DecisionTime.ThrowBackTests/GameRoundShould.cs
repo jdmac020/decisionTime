@@ -29,5 +29,17 @@ namespace DecisionTime.ThrowBackTests
 
             round.Game.Difficulty.ShouldBe(GameLevel.Normal);
         }
+
+        [Fact]
+        public void IncrementTurnNumberWhenEndTurnIsCalled()
+        {
+            var player = "Cassandra";
+            var difficulty = "normal";
+            var round = new Round(player, difficulty);
+
+            round.EndTurn();
+
+            round.Turn.ShouldBe(2);
+        }
     }
 }
