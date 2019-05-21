@@ -14,9 +14,10 @@ namespace DecisionTime.Core
             Player = new Player();
             Districts = new List<District>();
             Difficulty = difficulty;
+            GenerateDistrict();
         }
 
-        public void GenerateDistrict()
+        private void GenerateDistrict()
         {
 
             var newDistrict = new District

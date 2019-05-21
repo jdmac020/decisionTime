@@ -29,8 +29,6 @@ namespace DecisionTime.CoreTests
         {
             var game = new Game();
 
-            game.GenerateDistrict();
-
             game.Districts.Count.ShouldNotBe(0);
         }
 
@@ -39,8 +37,6 @@ namespace DecisionTime.CoreTests
         {
             var game = new Game();
 
-            game.GenerateDistrict();
-
             game.Districts.First().CurrentAttitude.ShouldBe(Attitude.Indifferent);
         }
 
@@ -48,8 +44,6 @@ namespace DecisionTime.CoreTests
         public void CreateFavorableDistrictInEasyMode()
         {
             var game = new Game(GameLevel.Easy);
-
-            game.GenerateDistrict();
 
             game.Districts.First().CurrentAttitude.ShouldBe(Attitude.Favorable);
         }

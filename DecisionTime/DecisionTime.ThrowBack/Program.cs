@@ -119,7 +119,6 @@ namespace DecisionTime.ThrowBack
         private static Game SetupGame(GameLevel difficulty)
         {
             Game game = new Game(difficulty);
-            game.GenerateDistrict(); // why is this not being done in constructor?
             return game;
         }
 
