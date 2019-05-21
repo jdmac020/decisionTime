@@ -9,11 +9,13 @@ namespace DecisionTime.ThrowBack
     {
         public string PlayerName { get; set; }
         public GameLevel Difficulty { get; set; }
+        public Game Game { get; set; }
 
         public Round(string playerName, string level)
         {
             PlayerName = playerName;
             Difficulty = GameLevelHelper.GetGameLevel(level);
+            Game = new Game(Difficulty);
         }
     }
 }

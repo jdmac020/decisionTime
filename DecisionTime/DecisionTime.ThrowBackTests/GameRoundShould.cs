@@ -19,5 +19,16 @@ namespace DecisionTime.ThrowBackTests
             round.PlayerName.ShouldBe(player);
             round.Difficulty.ShouldBe(GameLevel.Normal);
         }
+
+        [Fact]
+        public void HaveGameObject()
+        {
+            var player = "Cassandra";
+            var difficulty = "normal";
+
+            var round = new Round(player, difficulty);
+
+            round.Game.Difficulty.ShouldBe(GameLevel.Normal);
+        }
     }
 }
