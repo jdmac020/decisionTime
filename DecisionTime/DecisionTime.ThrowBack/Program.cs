@@ -8,6 +8,7 @@ namespace DecisionTime.ThrowBack
     {
         private static string entry = string.Empty;
         private static Game game = null;
+        private static Round round = null;
 
         static void Main(string[] args)
         {
@@ -16,7 +17,8 @@ namespace DecisionTime.ThrowBack
             {
                 Clear();
                 DisplayHeader();
-                SolicitInput("Do You Want an Easy or Normal Game?", "Enter 1 for Easy, 2 for Normal");
+                // setup round
+                SetupGameRound();
 
                 if (entry == "1")
                 {
@@ -65,8 +67,27 @@ namespace DecisionTime.ThrowBack
                 ReadLine();
             }
 
-            
+
             ReadLine();
+        }
+
+        private static void SetupGameRound()
+        {
+            SolicitInput("What is your name, Councilor?", "Type your name");
+            var name = entry;
+            SolicitInput("Do You Want an Easy or Normal Game?", "Enter 1 for Easy, 2 for Normal");
+            var difficulty = entry;
+            round = new Round(name, difficulty);
+            var response = $"Very well, Councilor {round.PlayerName}; ";
+            if (round.Game.Difficulty == GameLevel.Easy)
+            {
+                response += "We shall take it easy on you.";
+            }
+            else
+            {
+                response += "We shall treat you as one of us.";
+            }
+            PrintOutput(response);
         }
 
         private static void MeetingThePeople()
