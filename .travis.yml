@@ -10,20 +10,20 @@ dotnet: 2.2
 script:
     - cd /home/travis/build/jdmac020/decisionTime/DecisionTime/
     - dotnet test
-    - cd ./DecisionTime.ThrowBack/
-    - dotnet publish -c release -r win-x64 -o bin/dist/DecisionTime-Windows --self-contained true
-    - dotnet publish -c release -r osx-x64 -o bin/dist/DecisionTime-Mac --self-contained true
-    - cd ./bin/dist/
-    - zip -r DecisionTimeDemo-Win.zip DecisionTime-Windows
-    - zip -r DecisionTimeDemo-Mac.zip DecisionTime-Mac
-    - curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
-    - unzip butler.zip
+    #- cd ./DecisionTime.ThrowBack/
+    #- dotnet publish -c release -r win-x64 -o bin/dist/DecisionTime-Windows --self-contained true
+    #- dotnet publish -c release -r osx-x64 -o bin/dist/DecisionTime-Mac --self-contained true
+    #- cd ./bin/dist/
+    #- zip -r DecisionTimeDemo-Win.zip DecisionTime-Windows
+    #- zip -r DecisionTimeDemo-Mac.zip DecisionTime-Mac
+    #- curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+    #- unzip butler.zip
     # GNU unzip tends to not set the executable bit even though it's set in the .zip
-    - chmod +x butler
+    #- chmod +x butler
     # just a sanity check run (and also helpful in case you're sharing CI logs)
-    - ./butler -V
+    #- ./butler -V
     #- ./butler push DecisionTimeDemo-Win.zip jdmac020/decision-time:windows10
-    - ./butler push DecisionTimeDemo-Mac.zip jdmac020/decision-time:osx
+    #- ./butler push DecisionTimeDemo-Mac.zip jdmac020/decision-time:osx
 before_deploy:
     # Set up git user name and tag this commit
     - git config --local user.name jdmac020
