@@ -2,13 +2,6 @@
 
 curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
 
-while [ $? -eq 0 ]
-	do
-		unzip butler.zip
-		i=$i+1
-		chmod +x butler
-done
-
 if [ $? = 0 ]
 	then
 		unzip butler.zip
