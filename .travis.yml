@@ -11,8 +11,10 @@ script:
     - cd /home/travis/build/jdmac020/decisionTime/DecisionTime/
     - dotnet test
     - cd ../Scripts/
+    - chmod +x ./buterDeploy
     - chmod +x ./testWrap.bash
     - chmod +x ./test.bash
+    - chmod +x ./testBreak.bash
     - ./testWrap.bash
     #- cd ./DecisionTime.ThrowBack/
     #- dotnet publish -c release -r win-x64 -o bin/dist/DecisionTime-Windows --self-contained true
