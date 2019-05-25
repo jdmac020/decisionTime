@@ -4,7 +4,7 @@
 
 i="0"
 
-while [ $? eq 0 ]
+while [ $? -eq 0 ]
 	do
 		./test.bash
 		i=[$i+1]
