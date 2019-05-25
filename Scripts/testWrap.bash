@@ -7,7 +7,7 @@ i=0
 while [ $? -eq 0 ]
 	do
 		./test.bash
-		let "i+1"
+		i="i += 1"
 		echo "$i"
 		if [ i -eq 2 ]
 			then
