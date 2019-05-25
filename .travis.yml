@@ -10,6 +10,8 @@ dotnet: 2.2
 script:
     - cd /home/travis/build/jdmac020/decisionTime/DecisionTime/
     - dotnet test
+    - cd ../Scripts/
+    - ./test.bash
     #- cd ./DecisionTime.ThrowBack/
     #- dotnet publish -c release -r win-x64 -o bin/dist/DecisionTime-Windows --self-contained true
     #- dotnet publish -c release -r osx-x64 -o bin/dist/DecisionTime-Mac --self-contained true
