@@ -2,12 +2,12 @@
 
 ./test.bash
 
-i="0"
+i=0
 
 while [ $? -eq 0 ]
 	do
 		./test.bash
-		i=$i+1
+		let "i+1"
 		echo "$i"
 		if [ i -eq 2 ]
 			then
