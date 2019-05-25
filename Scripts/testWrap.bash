@@ -9,7 +9,7 @@ while [ $? -eq 0 ]
 		./test.bash
 		i=$((i + 1))
 		echo "$i"
-		if [ i -eq 2 ]
+		if [ $i -eq 2 ]
 			then
 				./testBreak.bash
 		fi
