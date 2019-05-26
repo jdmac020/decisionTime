@@ -39,5 +39,11 @@ namespace DecisionTime.CoreTests
 
             decision.Options.Count.ShouldBe(2);
         }
+
+        [Fact (Skip = "Need to test DecisionOption first")]
+        public void UpdateOptionWhenSelected()
+        {
+
+        }
     }
 }
