@@ -55,18 +55,31 @@ namespace DecisionTime.ThrowBackTests
             SetupNormalRound();
             var decisionList = new List<Decision>
             {
-                new Decision(.5)
+                new Decision(.5, string.Empty)
             };
 
             _round.LoadDecisions(decisionList);
 
             _round.Decisions.Count.ShouldBe(decisionList.Count);
         }
+        
+        [Fact (Skip = "Decision needs a description first")]
+        public void PresentDecision()
+        {
+            SetupNormalRound();
+            var decisionList = new List<Decision>
+            {
+                new Decision(.5, string.Empty)
+            };
+            _round.LoadDecisions(decisionList);
 
-        // Present decision
+            //var result = _round.PresentDecision();
+
+            //result.ShouldBe.
+        }
 
         // Present decisions that have not been asked
 
-
+        // Resolve decision
     }
 }

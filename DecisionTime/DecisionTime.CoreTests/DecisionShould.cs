@@ -13,19 +13,21 @@ namespace DecisionTime.CoreTests
         }
 
         [Fact]
-        public void BeCreatedWithValue()
+        public void BeCreatedWithValueAndDescription()
         {
             var testValue = .5;
-            var decision = new Decision(testValue);
+            var testDescription = "What ice cream?";
+            var decision = new Decision(testValue, testDescription);
 
             decision.Value.ShouldBe(testValue);
+            decision.Description.ShouldBe(testDescription);
         }
 
         [Fact]
         public void HaveAnOptionAddedToIt()
         {
             var testValue = .5;
-            var decision = new Decision(testValue);
+            var decision = new Decision(testValue, string.Empty);
 
             decision.AddOptions(CreateDefaultOption());
 
@@ -36,7 +38,7 @@ namespace DecisionTime.CoreTests
         public void HaveMultipleOptionsAddedToIt()
         {
             var testValue = .5;
-            var decision = new Decision(testValue);
+            var decision = new Decision(testValue, string.Empty);
             var optionOne = CreateDefaultOption();
             var optionTwo = CreateDefaultOption();
 
@@ -49,7 +51,7 @@ namespace DecisionTime.CoreTests
         public void HaveMultipleOptionsWithUniqueIds()
         {
             var testValue = .5;
-            var decision = new Decision(testValue);
+            var decision = new Decision(testValue, string.Empty);
             var optionOne = CreateDefaultOption();
             var optionTwo = CreateDefaultOption();
 

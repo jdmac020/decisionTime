@@ -7,10 +7,12 @@ namespace DecisionTime.Core.GameObjects
     {
         public double Value;
         public List<DecisionOption> Options { get; set; }
+        public string Description { get; set; }
 
-        public Decision(double value)
+        public Decision(double value, string description)
         {
             Value = value;
+            Description = description;
             Options = new List<DecisionOption>();
         }
         
