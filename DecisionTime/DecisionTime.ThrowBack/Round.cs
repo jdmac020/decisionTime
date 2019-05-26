@@ -2,6 +2,7 @@
 using DecisionTime.Core.GameObjects;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DecisionTime.ThrowBack
@@ -29,6 +30,11 @@ namespace DecisionTime.ThrowBack
         public void LoadDecisions(List<Decision> decisionList)
         {
             Decisions = decisionList;
+        }
+
+        public Decision PresentDecision()
+        {
+            return Decisions.First();
         }
     }
 }

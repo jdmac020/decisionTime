@@ -63,19 +63,20 @@ namespace DecisionTime.ThrowBackTests
             _round.Decisions.Count.ShouldBe(decisionList.Count);
         }
         
-        [Fact (Skip = "Decision needs a description first")]
+        [Fact]
         public void PresentDecision()
         {
             SetupNormalRound();
+            var decision = new Decision(.5, "Release the kraken?");
             var decisionList = new List<Decision>
             {
-                new Decision(.5, string.Empty)
+                decision
             };
             _round.LoadDecisions(decisionList);
 
-            //var result = _round.PresentDecision();
+            var result = _round.PresentDecision();
 
-            //result.ShouldBe.
+            result.ShouldBe(decision);
         }
 
         // Present decisions that have not been asked
