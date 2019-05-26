@@ -29,12 +29,18 @@ namespace DecisionTime.ThrowBack
 
                     PresentNextDecision();
 
-                    WriteLine("Press any key to end turn, or \'x\' to exit game");
-                    entry = ReadLine();
-                    round.EndTurn();
-
+                    if (round.GameOver)
+                    {
+                        WriteLine("You have reached the end of the game! Press 'x' to Exit");
+                        entry = ReadLine();
+                    }
+                    else
+                    {
+                        WriteLine("Press any key to end turn, or 'x' to exit game");
+                        entry = ReadLine();
+                        round.EndTurn();
+                    }
                 }
-
             }
 
             Clear();
@@ -62,7 +68,6 @@ namespace DecisionTime.ThrowBack
             }
             else
             {
-                WriteLine("You have reached the end of the game! Press 'x' to Exit");
                 round.UpdateTitle("Brave");
             }
         }
