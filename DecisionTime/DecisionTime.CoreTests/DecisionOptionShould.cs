@@ -7,20 +7,22 @@ namespace DecisionTime.CoreTests
     public class DecisionOptionShould
     {
         [Fact]
-        public void HaveDescriptionAndIdWhenCreated()
+        public void HaveDescriptionAndTypeWhenCreated()
         {
             var description = "Banana Split";
-            var id = 1;
-            var option = new DecisionOption(id, description);
-
-            option.Id.ShouldBe(id);
+            var type = OptionTypes.Good;
+            var option = new DecisionOption(description, type);
+            
             option.Description.ShouldBe(description);
+            option.OptionType.ShouldBe(type);
         }
 
         [Fact]
         public void UpdateSelectedStatus()
         {
-            var option = new DecisionOption();
+            var description = "Banana Split";
+            var type = OptionTypes.Good;
+            var option = new DecisionOption(description, type);
 
             option.Select();
 

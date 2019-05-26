@@ -7,6 +7,11 @@ namespace DecisionTime.CoreTests
 {
     public class DecisionShould
     {
+        private DecisionOption CreateDefaultOption()
+        {
+            return new DecisionOption("Banana Split", OptionTypes.Bad);
+        }
+
         [Fact]
         public void BeCreatedWithValue()
         {
@@ -22,7 +27,7 @@ namespace DecisionTime.CoreTests
             var testValue = .5;
             var decision = new Decision(testValue);
 
-            decision.AddOptions(new DecisionOption());
+            decision.AddOptions(CreateDefaultOption());
 
             decision.Options.Count.ShouldBe(1);
         }
@@ -32,11 +37,12 @@ namespace DecisionTime.CoreTests
         {
             var testValue = .5;
             var decision = new Decision(testValue);
-            var optionOne = new DecisionOption();
-            var optionTwo = new DecisionOption();
+            var optionOne = CreateDefaultOption();
+            var optionTwo = CreateDefaultOption();
 
             decision.AddOptions(optionOne, optionTwo);
 
+            // check for ID number instead
             decision.Options.Count.ShouldBe(2);
         }
 

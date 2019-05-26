@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DecisionTime.Core.Other
+﻿namespace DecisionTime.Core.Other
 {
     public class DecisionOption
     {
         public int Id { get; set; }
         public string Description { get; set; }
         public bool IsSelected { get; set; }
+        public OptionTypes OptionType { get; set; }
 
-        public DecisionOption(int id = -1, string description = "Run Away")
+        public DecisionOption(string description, OptionTypes type)
         {
-            Id = id;
             Description = description;
+            OptionType = type;
         }
 
         public void Select()
