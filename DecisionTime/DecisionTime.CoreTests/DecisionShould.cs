@@ -57,14 +57,7 @@ namespace DecisionTime.CoreTests
 
             var idOne = decision.Options[0].Id;
             var idTwo = decision.Options[1].Id;
-
             idOne.ShouldNotBe(idTwo);
-        }
-
-        [Fact (Skip = "Need to test DecisionOption first")]
-        public void UpdateOptionWhenSelected()
-        {
-
         }
     }
 }
