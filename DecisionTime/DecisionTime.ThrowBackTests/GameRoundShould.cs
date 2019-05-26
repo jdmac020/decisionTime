@@ -115,24 +115,6 @@ namespace DecisionTime.ThrowBackTests
 
             result.ShouldBeNull();
         }
-        
-        [Fact]
-        public void ResolveTheDecisionWhenSelectionIsMade()
-        {
-            SetupNormalRound();
-            var decision = new Decision(.5, "Release the kraken?");
-            decision.AddOptions(new Core.Other.DecisionOption("Hecks Naw", Core.Other.OptionTypes.Bad));
-            var decisions = new List<Decision>
-            {
-                decision
-            };
-            _round.LoadDecisions(decisions);
-
-            _round.ResolveDecision(decision, 1);
-
-            _round.Decisions.Find(dec => dec.Description.Equals(decision.Description))
-                .IsResolved.ShouldBeTrue();
-        }
 
 
     }
