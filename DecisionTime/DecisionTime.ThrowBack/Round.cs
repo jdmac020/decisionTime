@@ -1,4 +1,5 @@
 ﻿using DecisionTime.Core;
+using DecisionTime.Core.GameObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,7 @@ namespace DecisionTime.ThrowBack
         public string PlayerName { get; set; }
         public Game Game { get; set; }
         public int Turn { get; set; } = 1;
+        public List<Decision> Decisions { get; set; }
 
         public Round(string playerName, string level)
         {
@@ -22,6 +24,11 @@ namespace DecisionTime.ThrowBack
         {
             // Do end of turn calcs
             Turn++;
+        }
+
+        public void LoadDecisions(List<Decision> decisionList)
+        {
+            Decisions = decisionList;
         }
     }
 }

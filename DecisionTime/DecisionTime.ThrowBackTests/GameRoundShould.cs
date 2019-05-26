@@ -3,6 +3,8 @@ using Xunit;
 using DecisionTime.Core;
 using DecisionTime.ThrowBack;
 using Shouldly;
+using DecisionTime.Core.GameObjects;
+using System.Collections.Generic;
 
 namespace DecisionTime.ThrowBackTests
 {
@@ -46,5 +48,25 @@ namespace DecisionTime.ThrowBackTests
 
             _round.Turn.ShouldBe(2);
         }
+
+        [Fact]
+        public void LoadDecisions()
+        {
+            SetupNormalRound();
+            var decisionList = new List<Decision>
+            {
+                new Decision(.5)
+            };
+
+            _round.LoadDecisions(decisionList);
+
+            _round.Decisions.Count.ShouldBe(decisionList.Count);
+        }
+
+        // Present decision
+
+        // Present decisions that have not been asked
+
+
     }
 }
