@@ -77,5 +77,19 @@ namespace DecisionTime.CoreTests
 
             decision.IsResolved.ShouldBeTrue();
         }
+
+        [Fact]
+        public void ReturnChosenDecisionOption()
+        {
+            var decision = CreateDefaultDecision();
+            var option = CreateDefaultOption();
+            decision.AddOptions(option);
+            var optionId = 1;
+            decision.Resolve(optionId);
+
+            var result = decision.GetChosenOption();
+
+            result.ShouldBe(option);
+        }
     }
 }

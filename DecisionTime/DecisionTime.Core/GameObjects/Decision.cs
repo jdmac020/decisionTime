@@ -34,5 +34,10 @@ namespace DecisionTime.Core.GameObjects
             selectedOption.IsSelected = true;
             IsResolved = true;
         }
+
+        public DecisionOption GetChosenOption()
+        {
+            return Options.Find(opt => opt.IsSelected);
+        }
     }
 }
