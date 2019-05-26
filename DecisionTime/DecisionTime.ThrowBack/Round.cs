@@ -13,12 +13,20 @@ namespace DecisionTime.ThrowBack
         public Game Game { get; set; }
         public int Turn { get; set; } = 1;
         public List<Decision> Decisions { get; set; }
+        public string Title { get; set; }
 
         public Round(string playerName, string level)
         {
             PlayerName = playerName;
             var difficulty = GameLevelHelper.GetGameLevel(level);
             Game = new Game(difficulty);
+
+            if (difficulty == GameLevel.Easy)
+            {
+                Title = "Coward";
+            }
+
+            Title = "Meek";
         }
 
         public void EndTurn()
@@ -37,9 +45,9 @@ namespace DecisionTime.ThrowBack
             return Decisions.Find(decision => decision.IsResolved.Equals(false));
         }
 
-        public void ResolveDecision(Decision decision, int optionId)
+        public void UpdateTitle(string title)
         {
-            decision.Resolve(optionId);
+            Title = title;
         }
     }
 }

@@ -116,6 +116,15 @@ namespace DecisionTime.ThrowBackTests
             result.ShouldBeNull();
         }
 
+        [Fact]
+        public void UpdateFarewellTitle()
+        {
+            SetupNormalRound();
+            var title = "Brave";
 
+            _round.UpdateTitle(title);
+
+            _round.Title.ShouldBe("Brave");
+        }
     }
 }
