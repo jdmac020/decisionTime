@@ -1,7 +1,8 @@
 ﻿using DecisionTime.Core;
+using DecisionTime.Core.Other;
 using DecisionTime.ThrowBack.Helpers;
-using System;
 using static System.Console;
+using static DecisionTime.ThrowBack.DecisionFactory;
 
 namespace DecisionTime.ThrowBack
 {
@@ -27,6 +28,27 @@ namespace DecisionTime.ThrowBack
                     DisplayDistrictStats();
 
                     // present decision
+                    var decision = round.PresentDecision();
+                    if (decision != null)
+                    {
+                        WriteLine($"{decision.Description} What do you think?");
+                        foreach (var option in decision.Options)
+                        {
+                            WriteLine($"#{option.Id}: {option.Description}");
+                        }
+                        SolicitInput("What is your decision?", "Enter the number of your choice");
+                        var entryAsInt = int.Parse(entry);
+                        decision.Resolve(entryAsInt);
+                        var chosenOption = decision.Options.Find(opt => opt.IsSelected);
+
+                        WriteLine($"You picked '{chosenOption.Description}'!");
+                    }
+                    else
+                    {
+                        WriteLine("You have reached the end of the game!");
+
+                    }
+                    
 
                     WriteLine("Press any key to end turn, or \'x\' to exit game");
                     entry = ReadLine();
@@ -51,6 +73,7 @@ namespace DecisionTime.ThrowBack
             var difficulty = InputParsers.IntToLevelName(entry);
 
             round = new Round(name, difficulty);
+            round.Decisions = CreateDefaultDecisions();
         }
 
         private static void BeginRoundWithConsent()

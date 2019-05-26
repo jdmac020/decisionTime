@@ -115,8 +115,7 @@ namespace DecisionTime.ThrowBackTests
 
             result.ShouldBeNull();
         }
-
-        // Resolve decision
+        
         [Fact]
         public void ResolveTheDecisionWhenSelectionIsMade()
         {
@@ -134,5 +133,7 @@ namespace DecisionTime.ThrowBackTests
             _round.Decisions.Find(dec => dec.Description.Equals(decision.Description))
                 .IsResolved.ShouldBeTrue();
         }
+
+
     }
 }
