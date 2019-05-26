@@ -12,6 +12,12 @@ namespace DecisionTime.CoreTests
             return new DecisionOption("Banana Split", OptionTypes.Bad);
         }
 
+        private Decision CreateDefaultDecision()
+        {
+            var testValue = .5;
+            return new Decision(testValue, string.Empty);
+        }
+
         [Fact]
         public void BeCreatedWithValueAndDescription()
         {
@@ -26,8 +32,7 @@ namespace DecisionTime.CoreTests
         [Fact]
         public void HaveAnOptionAddedToIt()
         {
-            var testValue = .5;
-            var decision = new Decision(testValue, string.Empty);
+            var decision = CreateDefaultDecision();
 
             decision.AddOptions(CreateDefaultOption());
 
@@ -37,8 +42,7 @@ namespace DecisionTime.CoreTests
         [Fact]
         public void HaveMultipleOptionsAddedToIt()
         {
-            var testValue = .5;
-            var decision = new Decision(testValue, string.Empty);
+            var decision = CreateDefaultDecision();
             var optionOne = CreateDefaultOption();
             var optionTwo = CreateDefaultOption();
 
@@ -50,8 +54,7 @@ namespace DecisionTime.CoreTests
         [Fact]
         public void HaveMultipleOptionsWithUniqueIds()
         {
-            var testValue = .5;
-            var decision = new Decision(testValue, string.Empty);
+            var decision = CreateDefaultDecision();
             var optionOne = CreateDefaultOption();
             var optionTwo = CreateDefaultOption();
 
