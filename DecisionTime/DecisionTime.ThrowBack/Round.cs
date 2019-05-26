@@ -14,6 +14,7 @@ namespace DecisionTime.ThrowBack
         public int Turn { get; set; } = 1;
         public List<Decision> Decisions { get; set; }
         public string Title { get; set; }
+        public bool GameOver { get; set; }
 
         public Round(string playerName, string level)
         {
@@ -25,8 +26,11 @@ namespace DecisionTime.ThrowBack
             {
                 Title = "Coward";
             }
-
-            Title = "Meek";
+            else
+            {
+                Title = "Meek";
+            }
+            
         }
 
         public void EndTurn()
@@ -42,7 +46,14 @@ namespace DecisionTime.ThrowBack
 
         public Decision PresentDecision()
         {
-            return Decisions.Find(decision => decision.IsResolved.Equals(false));
+            var decision = Decisions.Find(dec => dec.IsResolved.Equals(false));
+
+            if (decision is null)
+            {
+                GameOver = true;
+            }
+
+            return decision;
         }
 
         public void UpdateTitle(string title)

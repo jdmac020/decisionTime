@@ -126,5 +126,23 @@ namespace DecisionTime.ThrowBackTests
 
             _round.Title.ShouldBe("Brave");
         }
+
+        [Fact]
+        public void SwitchEndGameFlagWhenNoMoreDecisions()
+        {
+            SetupNormalRound();
+            var resolvedDecision = new Decision(.5, "Release the kraken?");
+            resolvedDecision.IsResolved = true;
+            var decisions = new List<Decision>
+            {
+                resolvedDecision
+            };
+            _round.LoadDecisions(decisions);
+
+            var result = _round.PresentDecision();
+
+            result.ShouldBeNull();
+            _round.GameOver.ShouldBeTrue();
+        }
     }
 }

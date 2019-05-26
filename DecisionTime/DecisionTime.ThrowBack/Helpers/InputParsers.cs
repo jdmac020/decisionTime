@@ -21,5 +21,22 @@ namespace DecisionTime.ThrowBack.Helpers
 
             return difficulty;
         }
+
+        public static int ParseInt(string entryString)
+        {
+            var isParsed = false;
+            var returnInt = 0;
+
+            isParsed = int.TryParse(entryString, out returnInt);
+
+            while (isParsed.Equals(false))
+            {
+                Console.Write("Sorry, that wasn't a number. Try again? ");
+                entryString = Console.ReadLine();
+                isParsed = int.TryParse(entryString, out returnInt);
+            }
+
+            return returnInt;
+        }
     }
 }

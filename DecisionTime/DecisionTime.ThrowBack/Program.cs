@@ -27,43 +27,46 @@ namespace DecisionTime.ThrowBack
                     DisplayHeader();
                     DisplayDistrictStats();
 
-                    // present decision
-                    var decision = round.PresentDecision();
-                    if (decision != null)
-                    {
-                        WriteLine($"{decision.Description} What do you think?");
-                        foreach (var option in decision.Options)
-                        {
-                            WriteLine($"#{option.Id}: {option.Description}");
-                        }
-                        SolicitInput("What is your decision?", "Enter the number of your choice");
-                        var entryAsInt = int.Parse(entry);
-                        decision.Resolve(entryAsInt);
-                        var chosenOption = decision.Options.Find(opt => opt.IsSelected);
-
-                        WriteLine($"You picked '{chosenOption.Description}'!");
-                    }
-                    else
-                    {
-                        WriteLine("You have reached the end of the game!");
-
-                    }
-                    
+                    PresentNextDecision();
 
                     WriteLine("Press any key to end turn, or \'x\' to exit game");
                     entry = ReadLine();
                     round.EndTurn();
-                    
+
                 }
 
             }
 
             Clear();
             DisplayHeader();
-            PrintOutput($"A fond farewell, {round.PlayerName} the Coward!");
+            PrintOutput($"A fond farewell, {round.PlayerName} the {round.Title}!");
             ReadLine();
         }
 
+        private static void PresentNextDecision()
+        {
+            var decision = round.PresentDecision();
+            if (decision != null)
+            {
+                WriteLine($"{decision.Description} What do you think?");
+                foreach (var option in decision.Options)
+                {
+                    WriteLine($"#{option.Id}: {option.Description}");
+                }
+                SolicitInput("What is your decision?", "Enter the number of your choice");
+                var optionSelection = InputParsers.ParseInt(entry);
+                decision.Resolve(optionSelection);
+                var chosenOption = decision.GetChosenOption();
+
+                WriteLine($"You picked '{chosenOption.Description}'!");
+            }
+            else
+            {
+                WriteLine("You have reached the end of the game! Press 'x' to Exit");
+                round.UpdateTitle("Brave");
+            }
+        }
+        
         private static void SetupGameRound()
         {
             SolicitInput("What is your name, Councilor?", "Type your name");
