@@ -64,5 +64,18 @@ namespace DecisionTime.CoreTests
             var idTwo = decision.Options[1].Id;
             idOne.ShouldNotBe(idTwo);
         }
+
+        [Fact]
+        public void GetMarkedResolvedWhenValidOptionIdIsPassed()
+        {
+            var decision = CreateDefaultDecision();
+            var option = CreateDefaultOption();
+            decision.AddOptions(option);
+            var optionId = 1;
+
+            decision.Resolve(optionId);
+
+            decision.IsResolved.ShouldBeTrue();
+        }
     }
 }
