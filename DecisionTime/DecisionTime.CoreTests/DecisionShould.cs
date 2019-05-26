@@ -17,7 +17,7 @@ namespace DecisionTime.CoreTests
         }
 
         [Fact]
-        public void HaveOptionsAddedToIt()
+        public void HaveAnOptionAddedToIt()
         {
             var testValue = .5;
             var decision = new Decision(testValue);
@@ -25,6 +25,19 @@ namespace DecisionTime.CoreTests
             decision.AddOptions(new DecisionOption());
 
             decision.Options.Count.ShouldBe(1);
+        }
+
+        [Fact]
+        public void HaveMultipleOptionsAddedToIt()
+        {
+            var testValue = .5;
+            var decision = new Decision(testValue);
+            var optionOne = new DecisionOption();
+            var optionTwo = new DecisionOption();
+
+            decision.AddOptions(optionOne, optionTwo);
+
+            decision.Options.Count.ShouldBe(2);
         }
     }
 }

@@ -16,9 +16,12 @@ namespace DecisionTime.Core.GameObjects
             Options = new List<DecisionOption>();
         }
         
-        public void AddOptions(DecisionOption decisionOption)
+        public void AddOptions(params DecisionOption[] decisionOption)
         {
-            Options.Add(decisionOption);
+            foreach (var option in decisionOption)
+            {
+                Options.Add(option);
+            }
         }
     }
 }
