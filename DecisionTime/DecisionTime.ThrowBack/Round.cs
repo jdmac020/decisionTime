@@ -34,7 +34,7 @@ namespace DecisionTime.ThrowBack
 
         public Decision PresentDecision()
         {
-            return Decisions.First();
+            return Decisions.Find(decision => decision.IsResolved.Equals(false));
         }
     }
 }

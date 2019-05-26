@@ -80,6 +80,25 @@ namespace DecisionTime.ThrowBackTests
         }
 
         // Present decisions that have not been asked
+        [Fact]
+        public void PresentOnlyDecisionsThatHaveNotBeenResolved()
+        {
+            SetupNormalRound();
+            var resolvedDecision = new Decision(.5, "Release the kraken?");
+            resolvedDecision.IsResolved = true;
+            var unresolvedDecision = new Decision(.5, "Do you have a very particular set of skills?");
+            var decisions = new List<Decision>
+            {
+                resolvedDecision,
+                unresolvedDecision
+            };
+            _round.LoadDecisions(decisions);
+
+            var result = _round.PresentDecision();
+
+            result.ShouldBe(unresolvedDecision);
+
+        }
 
         // Resolve decision
     }
