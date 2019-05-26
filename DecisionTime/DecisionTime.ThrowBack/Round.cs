@@ -36,5 +36,10 @@ namespace DecisionTime.ThrowBack
         {
             return Decisions.Find(decision => decision.IsResolved.Equals(false));
         }
+
+        public void ResolveDecision(Decision decision, int optionId)
+        {
+            decision.Resolve(optionId);
+        }
     }
 }
