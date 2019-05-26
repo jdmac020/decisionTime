@@ -41,9 +41,24 @@ namespace DecisionTime.CoreTests
             var optionTwo = CreateDefaultOption();
 
             decision.AddOptions(optionOne, optionTwo);
-
-            // check for ID number instead
+            
             decision.Options.Count.ShouldBe(2);
+        }
+
+        [Fact]
+        public void HaveMultipleOptionsWithUniqueIds()
+        {
+            var testValue = .5;
+            var decision = new Decision(testValue);
+            var optionOne = CreateDefaultOption();
+            var optionTwo = CreateDefaultOption();
+
+            decision.AddOptions(optionOne, optionTwo);
+
+            var idOne = decision.Options[0].Id;
+            var idTwo = decision.Options[1].Id;
+
+            idOne.ShouldNotBe(idTwo);
         }
 
         [Fact (Skip = "Need to test DecisionOption first")]

@@ -14,10 +14,12 @@ namespace DecisionTime.Core.GameObjects
             Options = new List<DecisionOption>();
         }
         
-        public void AddOptions(params DecisionOption[] decisionOption)
+        public void AddOptions(params DecisionOption[] decisionOptions)
         {
-            foreach (var option in decisionOption)
+            for (var i = 0; i < decisionOptions.Length; i++)
             {
+                var option = decisionOptions[i];
+                option.Id = i + 1;
                 Options.Add(option);
             }
         }
