@@ -2,6 +2,7 @@
 using Shouldly;
 using DecisionTime.Core;
 using System.Collections.Generic;
+using DecisionTime.Core.Constants;
 
 namespace DecisionTime.CoreTests
 {
@@ -39,7 +40,7 @@ namespace DecisionTime.CoreTests
         {
             var district = new District();
             var citizen = new Citizen("Bob");
-            citizen.CurrentAttitude = Attitude.Favorable;
+            citizen.UpdateAttitude(Attitude.Favorable);
             district.Citizens = new List<Citizen>
             {
                 citizen
@@ -57,7 +58,7 @@ namespace DecisionTime.CoreTests
             else
             {
                 var citizen = new Citizen(name);
-                citizen.CurrentAttitude = initialAttitude;
+                citizen.UpdateAttitude(initialAttitude);
                 return citizen;
             }
         }

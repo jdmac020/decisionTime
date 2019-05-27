@@ -1,6 +1,7 @@
 ﻿using DecisionTime.Core;
-using System;
+using DecisionTime.ThrowBack.Helpers;
 using static System.Console;
+using static DecisionTime.ThrowBack.DecisionFactory;
 
 namespace DecisionTime.ThrowBack
 {
@@ -8,65 +9,87 @@ namespace DecisionTime.ThrowBack
     {
         private static string entry = string.Empty;
         private static Game game = null;
+        private static Round round = null;
 
         static void Main(string[] args)
         {
-           
             while (entry != "x")
             {
-                Clear();
                 DisplayHeader();
-                SolicitInput("Do You Want an Easy or Normal Game?", "Enter 1 for Easy, 2 for Normal");
+                SetupGameRound();
+                BeginRoundWithConsent();
 
-                if (entry == "1")
+                // turn loop
+                while (entry != "x")
                 {
-                    PrintOutput("You Picked Easy!! We shall be gentle.");
-                    game = SetupGame(GameLevel.Easy);
+                    Clear();
+                    DisplayHeader();
+                    DisplayDistrictStats();
 
-                    DisplayDistrictStats(game);
+                    PresentNextDecision();
 
-                    SolicitInput("Would You Like To Meet Your Constituents?", "Type y or n");
-
-                    if (entry == "x")
+                    if (round.GameOver)
                     {
-                        PrintOutput("Running away, are you??");
-                        break;
+                        WriteLine("You have reached the end of the game! Press 'x' to Exit");
+                        entry = ReadLine();
                     }
-
-                    MeetingThePeople();
-                }
-                else if (entry == "2")
-                {
-                    WriteLine("You Picked Normal!! You must be fun at parties.");
-                    game = SetupGame(GameLevel.Normal);
-
-                    DisplayDistrictStats(game);
-
-                    SolicitInput("Would You Like To Meet Your Constituents?", "Type Y or N");
-
-                    if (entry == "x")
+                    else
                     {
-                        PrintOutput("Running away, are you??");
-                        break;
+                        WriteLine("Press any key to end turn, or 'x' to exit game");
+                        entry = ReadLine();
+                        round.EndTurn();
                     }
-
-                    MeetingThePeople();
                 }
-                else if (entry == "x")
-                {
-                    WriteLine("You've chosen to exit. Goodbye, Scardy-Cat!");
-                    break;
-                }
-                else
-                {
-                    WriteLine("That was not a valid choice--shall we try again?");
-                }
-
-                ReadLine();
             }
 
-            
+            Clear();
+            DisplayHeader();
+            PrintOutput($"A fond farewell, {round.PlayerName} the {round.Title}!");
             ReadLine();
+        }
+
+        private static void PresentNextDecision()
+        {
+            var decision = round.PresentDecision();
+            if (decision != null)
+            {
+                WriteLine($"{decision.Description} What do you think?");
+                foreach (var option in decision.Options)
+                {
+                    WriteLine($"#{option.Id}: {option.Description}");
+                }
+                SolicitInput("What is your decision?", "Enter the number of your choice");
+                var optionSelection = InputParsers.ParseInt(entry);
+                round.ResolveDecision(decision, optionSelection);
+                var chosenOption = decision.GetChosenOption();
+
+                WriteLine($"You picked '{chosenOption.Description}'!");
+            }
+            else
+            {
+                round.UpdateTitle("Brave");
+            }
+        }
+        
+        private static void SetupGameRound()
+        {
+            SolicitInput("What is your name, Councilor?", "Type your name");
+            var name = entry;
+
+            SolicitInput("Do You Want an Easy or Normal Game?", "Enter 1 for Easy, 2 for Normal");
+            var difficulty = InputParsers.IntToLevelName(entry);
+
+            round = new Round(name, difficulty);
+            round.Decisions = CreateDefaultDecisions();
+        }
+
+        private static void BeginRoundWithConsent()
+        {
+            var response = DialogueHelper.WelcomeDialogueHelper(round.PlayerName, round.Game.Difficulty);
+
+            PrintOutput(response);
+
+            SolicitInput("Are you ready to begin?", "Press any key to start, \'x\' to exit");
         }
 
         private static void MeetingThePeople()
@@ -116,34 +139,29 @@ namespace DecisionTime.ThrowBack
             WriteLine();
         }
 
-        private static Game SetupGame(GameLevel difficulty)
-        {
-            Game game = new Game(difficulty);
-            game.GenerateDistrict(); // why is this not being done in constructor?
-            return game;
-        }
-
-        private static void DisplayDistrictStats(Game game)
+        private static void DisplayDistrictStats()
         {
             Clear();
             DisplayHeader();
-            WriteLine($"Your district has {game.Districts[0].Citizens.Count} Citizens, and their overall attitude toward you is {game.Districts[0].CurrentAttitude}.");
+            WriteLine($"Turn #{round.Turn}:");
+            WriteLine($"Your district has {round.Game.Districts[0].Citizens.Count} Citizens.");
+            WriteLine($"Their overall attitude toward you is {round.Game.Districts[0].CurrentAttitude}.");
             WriteLine();
             WriteLine();
         }
 
         private static void DisplayHeader()
         {
-            Console.WriteLine("****************************************");
-            Console.WriteLine("*      The apocalpyse happened!!!      *");
-            Console.WriteLine("*      You Are a District Rep!!!!      *");
-            Console.WriteLine("*   You Got Some Decisions To Make!!   *");
-            Console.WriteLine("*                                      *");
-            Console.WriteLine("*   Press 'x' at any prompt to exit!   *");
-            Console.WriteLine("****************************************");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
+            WriteLine("****************************************");
+            WriteLine("*      The apocalpyse happened!!!      *");
+            WriteLine("*      You Are a District Rep!!!!      *");
+            WriteLine("*   You Got Some Decisions To Make!!   *");
+            WriteLine("*                                      *");
+            WriteLine("*   Press 'x' at any prompt to exit!   *");
+            WriteLine("****************************************");
+            WriteLine();
+            WriteLine();
+            WriteLine();
         }
     }
 }
