@@ -29,8 +29,8 @@ namespace DecisionTime.Core
         {
             var chosenOption = decision.GetChosenOption();
 
-            var feeling = (int)CurrentAttitude;
-            feeling += (int)chosenOption.OptionType;
+            double feeling = (int)CurrentAttitude;
+            feeling += (int)chosenOption.OptionType * decision.Value;
 
             if (feeling <= (int)Attitude.Unfavorable)
             {

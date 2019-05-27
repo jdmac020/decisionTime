@@ -4,7 +4,7 @@ namespace DecisionTime.Core.GameObjects
 {
     public class Decision
     {
-        public double Value;
+        public double Value { get; set; }
         public List<DecisionOption> Options { get; set; }
         public string Description { get; set; }
         public bool IsResolved { get; set; }

@@ -65,5 +65,26 @@ namespace DecisionTime.CoreTests
 
             _citizen.CurrentAttitude.ShouldBe(Attitude.Favorable);
         }
+
+        [Fact (Skip = "Logic error")]
+        public void UpdateAttitudeWithTwoLowValueDecisions()
+        {
+            CreateIndifferentCitizenNamedBob();
+            var goodDecisionOne = new Decision(.5, "Taco Tuesday");
+            var optionOne = new DecisionOption("Yes", OptionTypes.Good);
+            optionOne.IsSelected = true;
+            goodDecisionOne.AddOptions(optionOne);
+            goodDecisionOne.IsResolved = true;
+            var goodDecisionTwo = new Decision(.5, "Taco Wednesday");
+            var optionTwo = new DecisionOption("Yes", OptionTypes.Good);
+            optionTwo.IsSelected = true;
+            goodDecisionTwo.AddOptions(optionTwo);
+            goodDecisionTwo.IsResolved = true;
+
+            _citizen.UpdateAttitude(goodDecisionOne);
+            _citizen.UpdateAttitude(goodDecisionTwo);
+
+            _citizen.CurrentAttitude.ShouldBe(Attitude.Favorable);
+        }
     }
 }
