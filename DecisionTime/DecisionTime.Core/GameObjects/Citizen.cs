@@ -7,8 +7,7 @@ namespace DecisionTime.Core
     {
         public string Name { get; set; }
         public Attitude CurrentAttitude { get { return GetAttitude(); } }
-
-        public IObservable Councillor { get; set; }
+        public IObservable Councilor { get; set; }
 
         private double _leaderFeels;
 
@@ -54,7 +53,7 @@ namespace DecisionTime.Core
         public void Register(IObservable subject)
         {
             subject.Subscribe(this);
-            Councillor = subject;
+            Councilor = subject;
         }
 
         public void Notify(object decision)

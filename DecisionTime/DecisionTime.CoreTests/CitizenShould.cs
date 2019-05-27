@@ -98,7 +98,7 @@ namespace DecisionTime.CoreTests
             _citizen.Register(observable);
 
             observable.Received().Subscribe(_citizen);
-            _citizen.Councillor.ShouldBe(observable);
+            _citizen.Councilor.ShouldBe(observable);
         }
 
         [Fact]
