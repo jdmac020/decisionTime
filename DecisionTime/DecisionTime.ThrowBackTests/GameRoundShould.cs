@@ -4,6 +4,7 @@ using Shouldly;
 using DecisionTime.Core.GameObjects;
 using System.Collections.Generic;
 using DecisionTime.Core.Constants;
+using NSubstitute;
 
 namespace DecisionTime.ThrowBackTests
 {
@@ -142,6 +143,17 @@ namespace DecisionTime.ThrowBackTests
 
             result.ShouldBeNull();
             _round.GameOver.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void AddSubscribers()
+        {
+            SetupNormalRound();
+            var subscriber = Substitute.For<IObserver>();
+
+            _round.Subscribe(subscriber);
+
+            _round.Subscribers.Count.ShouldBe(1);
         }
     }
 }

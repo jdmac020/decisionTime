@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DecisionTime.ThrowBack
 {
-    public class Round
+    public class Round : IObservable
     {
         public string PlayerName { get; set; }
         public Game Game { get; set; }
@@ -13,12 +13,14 @@ namespace DecisionTime.ThrowBack
         public List<Decision> Decisions { get; set; }
         public string Title { get; set; }
         public bool GameOver { get; set; }
+        public List<IObserver> Subscribers { get; set; }
 
         public Round(string playerName, string level)
         {
             PlayerName = playerName;
             var difficulty = GameLevelHelper.GetGameLevel(level);
             Game = new Game(difficulty);
+            Subscribers = new List<IObserver>();
 
             if (difficulty == GameLevel.Easy)
             {
@@ -57,6 +59,11 @@ namespace DecisionTime.ThrowBack
         public void UpdateTitle(string title)
         {
             Title = title;
+        }
+
+        public void Subscribe(IObserver observer)
+        {
+            Subscribers.Add(observer);
         }
     }
 }
