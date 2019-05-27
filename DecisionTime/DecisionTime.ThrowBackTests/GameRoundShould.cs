@@ -146,6 +146,25 @@ namespace DecisionTime.ThrowBackTests
         }
 
         [Fact]
+        public void ResolveDecisions()
+        {
+            SetupNormalRound();
+            var decision = new Decision(1, "Boo");
+            var option = new DecisionOption("Dude", OptionTypes.Neutral);
+            decision.AddOptions(option);
+            var decisions = new List<Decision>
+            {
+                decision
+            };
+            _round.LoadDecisions(decisions);
+
+            _round.ResolveDecision(decision, 1);
+
+            _round.Decisions[0].IsResolved.ShouldBeTrue();
+            _round.Decisions[0].GetChosenOption().Description.ShouldBe("Dude");
+        }
+
+        [Fact]
         public void AddSubscribers()
         {
             SetupNormalRound();
@@ -156,7 +175,7 @@ namespace DecisionTime.ThrowBackTests
             _round.Subscribers.Count.ShouldBe(1);
         }
 
-        [Fact(Skip = "Need to test Resolve and Notify first")]
+        [Fact(Skip = "Need to test Resolve first")]
         public void UpdateSubscribersWhenDecisionIsResolved()
         {
             SetupNormalRound();

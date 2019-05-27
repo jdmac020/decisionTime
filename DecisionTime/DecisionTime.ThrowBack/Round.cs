@@ -68,7 +68,7 @@ namespace DecisionTime.ThrowBack
 
         public void ResolveDecision(Decision decision, int optionSelection)
         {
-            
+            decision.Resolve(optionSelection);
         }
     }
 }
