@@ -66,7 +66,7 @@ namespace DecisionTime.CoreTests
             _citizen.CurrentAttitude.ShouldBe(Attitude.Favorable);
         }
 
-        [Fact (Skip = "Logic error")]
+        [Fact]
         public void UpdateAttitudeWithTwoLowValueDecisions()
         {
             CreateIndifferentCitizenNamedBob();

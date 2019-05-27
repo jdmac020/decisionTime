@@ -8,11 +8,13 @@ namespace DecisionTime.Core
     {
         public string Name { get; set; }
         public Attitude CurrentAttitude { get; set; }
+        private double _leaderFeels;
 
         public Citizen(string name)
         {
             Name = name;
             CurrentAttitude = Attitude.Indifferent;
+            _leaderFeels = (int)CurrentAttitude;
         }
 
         public Citizen(string name, Attitude desiredAttitude) : this(name)
@@ -28,15 +30,14 @@ namespace DecisionTime.Core
         public void UpdateAttitude(Decision decision)
         {
             var chosenOption = decision.GetChosenOption();
+            
+            _leaderFeels += (int)chosenOption.OptionType * decision.Value;
 
-            double feeling = (int)CurrentAttitude;
-            feeling += (int)chosenOption.OptionType * decision.Value;
-
-            if (feeling <= (int)Attitude.Unfavorable)
+            if (_leaderFeels <= (int)Attitude.Unfavorable)
             {
                 CurrentAttitude = Attitude.Unfavorable;
             }
-            else if (feeling > (int)Attitude.Unfavorable && feeling < (int)Attitude.Favorable)
+            else if (_leaderFeels > (int)Attitude.Unfavorable && _leaderFeels < (int)Attitude.Favorable)
             {
                 CurrentAttitude = Attitude.Indifferent;
             }
