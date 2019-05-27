@@ -10,18 +10,8 @@ dotnet: 2.2
 script:
     - cd /home/travis/build/jdmac020/decisionTime/DecisionTime/
     - dotnet test
-    - cd ../Scripts/
-    - chmod +x ./butlerDeploy.bash
-    - chmod +x ./testWrap.bash
-    - chmod +x ./test.bash
-    - chmod +x ./testBreak.bash
-    - ./testWrap.bash
-    #- cd ./DecisionTime.ThrowBack/
-    #- dotnet publish -c release -r win-x64 -o bin/dist/DecisionTime-Windows --self-contained true
-    #- dotnet publish -c release -r osx-x64 -o bin/dist/DecisionTime-Mac --self-contained true
-    #- cd ./bin/dist/
-    #- zip -r DecisionTimeDemo-Win.zip DecisionTime-Windows
-    #- zip -r DecisionTimeDemo-Mac.zip DecisionTime-Mac
+    - chmod +x ./Scripts/publishAndZip.bash
+    - 'if [ "$TRAVIS_BRANCH" = "master" ]; then ./Scripts/publishAndZip.bash; fi'
     #- curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
     #- unzip butler.zip
     # GNU unzip tends to not set the executable bit even though it's set in the .zip
@@ -41,6 +31,9 @@ deploy:
   api_key: $deploy_token
   skip_cleanup: true
   prerelease: true
+  file_glob: true
+  file:
+    - "/home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/dist/*.zip"
   name: 'DecisionTime Demo'
   body: 'Source code for the latest pre-release version of the DecisionTime demo.'
   on:
