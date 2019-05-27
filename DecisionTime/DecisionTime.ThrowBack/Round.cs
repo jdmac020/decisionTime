@@ -22,6 +22,11 @@ namespace DecisionTime.ThrowBack
             Game = new Game(difficulty);
             Subscribers = new List<IObserver>();
 
+            foreach (var citizen in Game.Districts[0].Citizens)
+            {
+                citizen.Register(this);
+            }
+
             if (difficulty == GameLevel.Easy)
             {
                 Title = "Coward";

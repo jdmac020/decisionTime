@@ -5,6 +5,7 @@ using DecisionTime.Core.GameObjects;
 using System.Collections.Generic;
 using DecisionTime.Core.Constants;
 using NSubstitute;
+using DecisionTime.Core;
 
 namespace DecisionTime.ThrowBackTests
 {
@@ -37,6 +38,14 @@ namespace DecisionTime.ThrowBackTests
             SetupNormalRound();
 
             _round.Game.Difficulty.ShouldBe(GameLevel.Normal);
+        }
+
+        [Fact]
+        public void SubscribeAllCitizensWhenCreated()
+        {
+            SetupNormalRound();
+
+            _round.Subscribers.Count.ShouldBe(3);
         }
 
         [Fact]
@@ -172,7 +181,7 @@ namespace DecisionTime.ThrowBackTests
 
             _round.Subscribe(subscriber);
 
-            _round.Subscribers.Count.ShouldBe(1);
+            _round.Subscribers.Count.ShouldBe(4);
         }
 
         [Fact]

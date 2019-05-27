@@ -60,7 +60,7 @@ namespace DecisionTime.ThrowBack
                 }
                 SolicitInput("What is your decision?", "Enter the number of your choice");
                 var optionSelection = InputParsers.ParseInt(entry);
-                decision.Resolve(optionSelection);
+                round.ResolveDecision(decision, optionSelection);
                 var chosenOption = decision.GetChosenOption();
 
                 WriteLine($"You picked '{chosenOption.Description}'!");
