@@ -11,7 +11,7 @@ script:
     - cd /home/travis/build/jdmac020/decisionTime/DecisionTime/
     - dotnet test
     - chmod +x ../Scripts/publishAndZip.bash
-    - 'if [ "$TRAVIS_BRANCH" = "master" ]; then ../Scripts/publishAndZip.bash; fi'
+    - 'if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ../Scripts/publishAndZip.bash; fi'
     #- curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
     #- unzip butler.zip
     # GNU unzip tends to not set the executable bit even though it's set in the .zip
