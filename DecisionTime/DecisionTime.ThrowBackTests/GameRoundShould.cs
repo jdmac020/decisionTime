@@ -1,10 +1,9 @@
-using System;
 using Xunit;
-using DecisionTime.Core;
 using DecisionTime.ThrowBack;
 using Shouldly;
 using DecisionTime.Core.GameObjects;
 using System.Collections.Generic;
+using DecisionTime.Core.Constants;
 
 namespace DecisionTime.ThrowBackTests
 {

@@ -1,6 +1,8 @@
 ﻿using Xunit;
 using Shouldly;
 using DecisionTime.Core;
+using DecisionTime.Core.GameObjects;
+using DecisionTime.Core.Constants;
 
 namespace DecisionTime.CoreTests
 {
@@ -41,6 +43,22 @@ namespace DecisionTime.CoreTests
             var citizen = new Citizen(testName);
 
             citizen.UpdateAttitude(Attitude.Favorable);
+
+            citizen.CurrentAttitude.ShouldBe(Attitude.Favorable);
+        }
+
+        [Fact]
+        public void UpdateAttitudeWithDecision()
+        {
+            var testName = "Bob";
+            var citizen = new Citizen(testName);
+            var goodDecision = new Decision(1, "Taco Tuesday");
+            var option = new DecisionOption("Yes", OptionTypes.Good);
+            option.IsSelected = true;
+            goodDecision.AddOptions(option);
+            goodDecision.IsResolved = true;
+
+            citizen.UpdateAttitude(goodDecision);
 
             citizen.CurrentAttitude.ShouldBe(Attitude.Favorable);
         }

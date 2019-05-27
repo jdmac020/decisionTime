@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DecisionTime.Core
+namespace DecisionTime.Core.Constants
 {
     public enum GameLevel
     {

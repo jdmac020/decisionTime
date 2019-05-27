@@ -1,4 +1,6 @@
-﻿namespace DecisionTime.Core.Other
+﻿using DecisionTime.Core.Constants;
+
+namespace DecisionTime.Core.GameObjects
 {
     public class DecisionOption
     {

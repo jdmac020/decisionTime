@@ -2,6 +2,7 @@
 using Shouldly;
 using DecisionTime.Core;
 using System.Collections.Generic;
+using DecisionTime.Core.Constants;
 
 namespace DecisionTime.CoreTests
 {

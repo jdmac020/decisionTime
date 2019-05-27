@@ -1,9 +1,9 @@
-﻿namespace DecisionTime.Core.Other
+﻿namespace DecisionTime.Core.Constants
 {
     public enum OptionTypes
     {
         Neutral,
         Good,
-        Bad
+        Bad = -1
     }
 }

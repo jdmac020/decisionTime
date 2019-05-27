@@ -1,5 +1,5 @@
 ﻿using DecisionTime.Core.GameObjects;
-using DecisionTime.Core.Other;
+using DecisionTime.Core.Constants;
 using System.Collections.Generic;
 
 namespace DecisionTime.ThrowBack
