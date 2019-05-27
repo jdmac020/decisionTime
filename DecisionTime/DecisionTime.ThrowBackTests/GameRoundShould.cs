@@ -175,7 +175,7 @@ namespace DecisionTime.ThrowBackTests
             _round.Subscribers.Count.ShouldBe(1);
         }
 
-        [Fact(Skip = "Need to test Resolve first")]
+        [Fact]
         public void UpdateSubscribersWhenDecisionIsResolved()
         {
             SetupNormalRound();

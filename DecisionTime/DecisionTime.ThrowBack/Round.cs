@@ -69,6 +69,11 @@ namespace DecisionTime.ThrowBack
         public void ResolveDecision(Decision decision, int optionSelection)
         {
             decision.Resolve(optionSelection);
+
+            foreach (var subscriber in Subscribers)
+            {
+                subscriber.Notify(decision);
+            }
         }
     }
 }
