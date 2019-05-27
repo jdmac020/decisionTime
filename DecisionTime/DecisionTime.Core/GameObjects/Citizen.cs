@@ -4,10 +4,13 @@ using DecisionTime.Core.GameObjects;
 
 namespace DecisionTime.Core
 {
-    public class Citizen
+    public class Citizen : IObserver
     {
         public string Name { get; set; }
         public Attitude CurrentAttitude { get { return GetAttitude(); } }
+
+        public IObservable Councillor { get; set; }
+
         private double _leaderFeels;
 
         public Citizen(string name)
@@ -47,6 +50,12 @@ namespace DecisionTime.Core
             {
                 return Attitude.Favorable;
             }
+        }
+
+        public void Register(IObservable subject)
+        {
+            subject.Subscribe(this);
+            Councillor = subject;
         }
     }
 }

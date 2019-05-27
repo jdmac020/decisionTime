@@ -3,6 +3,7 @@ using Shouldly;
 using DecisionTime.Core;
 using DecisionTime.Core.GameObjects;
 using DecisionTime.Core.Constants;
+using NSubstitute;
 
 namespace DecisionTime.CoreTests
 {
@@ -86,6 +87,18 @@ namespace DecisionTime.CoreTests
             _citizen.ReactTo(goodDecisionTwo);
 
             _citizen.CurrentAttitude.ShouldBe(Attitude.Favorable);
+        }
+
+        [Fact]
+        public void SubscribeToObservable()
+        {
+            CreateIndifferentCitizenNamedBob();
+            var observable = Substitute.For<IObservable>();
+
+            _citizen.Register(observable);
+
+            observable.Received().Subscribe(_citizen);
+            _citizen.Councillor.ShouldBe(observable);
         }
     }
 }
