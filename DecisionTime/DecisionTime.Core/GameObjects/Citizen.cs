@@ -1,5 +1,4 @@
-﻿using System;
-using DecisionTime.Core.Constants;
+﻿using DecisionTime.Core.Constants;
 using DecisionTime.Core.GameObjects;
 
 namespace DecisionTime.Core
@@ -56,6 +55,11 @@ namespace DecisionTime.Core
         {
             subject.Subscribe(this);
             Councillor = subject;
+        }
+
+        public void Notify(object decision)
+        {
+            ReactTo((Decision)decision);
         }
     }
 }

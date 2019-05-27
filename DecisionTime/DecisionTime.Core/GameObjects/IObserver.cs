@@ -7,5 +7,6 @@ namespace DecisionTime.Core.GameObjects
     public interface IObserver
     {
         void Register(IObservable subject);
+        void Notify(object decision);
     }
 }

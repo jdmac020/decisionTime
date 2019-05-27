@@ -155,5 +155,21 @@ namespace DecisionTime.ThrowBackTests
 
             _round.Subscribers.Count.ShouldBe(1);
         }
+
+        [Fact(Skip = "Need to test Resolve and Notify first")]
+        public void UpdateSubscribersWhenDecisionIsResolved()
+        {
+            SetupNormalRound();
+            var subscriber = Substitute.For<IObserver>();
+            _round.Subscribe(subscriber);
+            var decision = new Decision(1, "Boo");
+            var option = new DecisionOption("Dude", OptionTypes.Neutral);
+            decision.AddOptions(option);
+            var optionSelection = 1;
+
+            _round.ResolveDecision(decision, optionSelection);
+
+            subscriber.Received().Notify(decision);
+        }
     }
 }

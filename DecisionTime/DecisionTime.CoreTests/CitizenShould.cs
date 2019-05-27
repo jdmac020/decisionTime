@@ -100,5 +100,16 @@ namespace DecisionTime.CoreTests
             observable.Received().Subscribe(_citizen);
             _citizen.Councillor.ShouldBe(observable);
         }
+
+        [Fact]
+        public void UpdateLeaderFeelsWhenNotifyIsCalled()
+        {
+            CreateIndifferentCitizenNamedBob();
+            var decision = CreateDecisionWithSelectedOption(1, "Do the thing?", "Yes", OptionTypes.Good);
+
+            _citizen.Notify(decision);
+
+            _citizen.CurrentAttitude.ShouldBe(Attitude.Favorable);
+        }
     }
 }

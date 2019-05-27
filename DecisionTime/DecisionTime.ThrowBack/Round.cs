@@ -65,5 +65,10 @@ namespace DecisionTime.ThrowBack
         {
             Subscribers.Add(observer);
         }
+
+        public void ResolveDecision(Decision decision, int optionSelection)
+        {
+            
+        }
     }
 }
