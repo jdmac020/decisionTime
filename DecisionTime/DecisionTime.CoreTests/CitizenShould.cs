@@ -16,6 +16,17 @@ namespace DecisionTime.CoreTests
             _citizen = new Citizen(testNameBob);
         }
 
+        private Decision CreateDecisionWithSelectedOption(double decisionValue, string decisiondescription,
+            string optionDescription, OptionTypes optionType)
+        {
+            var goodDecision = new Decision(decisionValue, decisiondescription);
+            var option = new DecisionOption(optionDescription, optionType);
+            option.IsSelected = true;
+            goodDecision.AddOptions(option);
+            goodDecision.IsResolved = true;
+            return goodDecision;
+        }
+
         [Fact]
         public void HaveName()
         {
@@ -51,36 +62,26 @@ namespace DecisionTime.CoreTests
             _citizen.CurrentAttitude.ShouldBe(Attitude.Favorable);
         }
 
+
+
         [Fact]
         public void UpdateAttitudeWithDecision()
         {
             CreateIndifferentCitizenNamedBob();
-            var goodDecision = new Decision(1, "Taco Tuesday");
-            var option = new DecisionOption("Yes", OptionTypes.Good);
-            option.IsSelected = true;
-            goodDecision.AddOptions(option);
-            goodDecision.IsResolved = true;
+            var goodDecision = CreateDecisionWithSelectedOption(1, "Taco Tuesday", "Yes", OptionTypes.Good);
 
             _citizen.UpdateAttitude(goodDecision);
 
             _citizen.CurrentAttitude.ShouldBe(Attitude.Favorable);
         }
-
+        
         [Fact]
         public void UpdateAttitudeWithTwoLowValueDecisions()
         {
             CreateIndifferentCitizenNamedBob();
-            var goodDecisionOne = new Decision(.5, "Taco Tuesday");
-            var optionOne = new DecisionOption("Yes", OptionTypes.Good);
-            optionOne.IsSelected = true;
-            goodDecisionOne.AddOptions(optionOne);
-            goodDecisionOne.IsResolved = true;
-            var goodDecisionTwo = new Decision(.5, "Taco Wednesday");
-            var optionTwo = new DecisionOption("Yes", OptionTypes.Good);
-            optionTwo.IsSelected = true;
-            goodDecisionTwo.AddOptions(optionTwo);
-            goodDecisionTwo.IsResolved = true;
-
+            var goodDecisionOne = CreateDecisionWithSelectedOption(.5, "Taco Tuesday", "Yes", OptionTypes.Good);
+            var goodDecisionTwo = CreateDecisionWithSelectedOption(.5, "Taco Wednesday", "Yes", OptionTypes.Good);
+            
             _citizen.UpdateAttitude(goodDecisionOne);
             _citizen.UpdateAttitude(goodDecisionTwo);
 
