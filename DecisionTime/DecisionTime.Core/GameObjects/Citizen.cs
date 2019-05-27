@@ -7,43 +7,45 @@ namespace DecisionTime.Core
     public class Citizen
     {
         public string Name { get; set; }
-        public Attitude CurrentAttitude { get; set; }
+        public Attitude CurrentAttitude { get { return GetAttitude(); } }
         private double _leaderFeels;
 
         public Citizen(string name)
         {
             Name = name;
-            CurrentAttitude = Attitude.Indifferent;
-            _leaderFeels = (int)CurrentAttitude;
+            _leaderFeels = (int)Attitude.Indifferent;
         }
 
         public Citizen(string name, Attitude desiredAttitude) : this(name)
         {
-            CurrentAttitude = desiredAttitude;
+            _leaderFeels = (int)desiredAttitude;
         }
 
         public void UpdateAttitude(Attitude newAttitude)
         {
-            CurrentAttitude = newAttitude;
+            _leaderFeels = (int)newAttitude;
         }
 
-        public void UpdateAttitude(Decision decision)
+        public void ReactTo(Decision decision)
         {
             var chosenOption = decision.GetChosenOption();
             
             _leaderFeels += (int)chosenOption.OptionType * decision.Value;
+        }
 
+        private Attitude GetAttitude()
+        {
             if (_leaderFeels <= (int)Attitude.Unfavorable)
             {
-                CurrentAttitude = Attitude.Unfavorable;
+                return Attitude.Unfavorable;
             }
             else if (_leaderFeels > (int)Attitude.Unfavorable && _leaderFeels < (int)Attitude.Favorable)
             {
-                CurrentAttitude = Attitude.Indifferent;
+                return Attitude.Indifferent;
             }
             else
             {
-                CurrentAttitude = Attitude.Favorable;
+                return Attitude.Favorable;
             }
         }
     }

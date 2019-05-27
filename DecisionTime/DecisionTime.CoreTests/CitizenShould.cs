@@ -70,7 +70,7 @@ namespace DecisionTime.CoreTests
             CreateIndifferentCitizenNamedBob();
             var goodDecision = CreateDecisionWithSelectedOption(1, "Taco Tuesday", "Yes", OptionTypes.Good);
 
-            _citizen.UpdateAttitude(goodDecision);
+            _citizen.ReactTo(goodDecision);
 
             _citizen.CurrentAttitude.ShouldBe(Attitude.Favorable);
         }
@@ -82,8 +82,8 @@ namespace DecisionTime.CoreTests
             var goodDecisionOne = CreateDecisionWithSelectedOption(.5, "Taco Tuesday", "Yes", OptionTypes.Good);
             var goodDecisionTwo = CreateDecisionWithSelectedOption(.5, "Taco Wednesday", "Yes", OptionTypes.Good);
             
-            _citizen.UpdateAttitude(goodDecisionOne);
-            _citizen.UpdateAttitude(goodDecisionTwo);
+            _citizen.ReactTo(goodDecisionOne);
+            _citizen.ReactTo(goodDecisionTwo);
 
             _citizen.CurrentAttitude.ShouldBe(Attitude.Favorable);
         }
