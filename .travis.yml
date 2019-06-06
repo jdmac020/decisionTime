@@ -13,7 +13,8 @@ script:
     - cd /home/travis/build/jdmac020/decisionTime/DecisionTime/
     - dotnet tool install -g dotnet-warp
     - cd ./DecisionTime.ThrowBack/
-    - dotnet-warp
+    - dotnet-warp win-64 --output ./DecisionTimeDemo-Win
+    - dotnet-warp osx-64 --output ./DecisionTimeDemo-Mac
     #- dotnet test
     #- chmod +x ../Scripts/publishAndZip.bash
     #- 'if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ../Scripts/publishAndZip.bash; fi'
@@ -38,8 +39,10 @@ deploy:
   prerelease: true
   file_glob: true
   file:
-    - "/home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/dist/*.zip"
+    #- "/home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/bin/dist/*.zip"
+    - "/home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/DecisionTimeDemo-Mac.*"
+    - "/home/travis/build/jdmac020/decisionTime/DecisionTime/DecisionTime.ThrowBack/DecisionTimeDemo-Win.*"
   name: 'DecisionTime Demo'
   body: 'Source code for the latest pre-release version of the DecisionTime demo.'
-  on:
-    branch: master
+  #on:
+  #  branch: master
