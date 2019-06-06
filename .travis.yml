@@ -12,7 +12,7 @@ before_script:
 script:
     - cd /home/travis/build/jdmac020/decisionTime/DecisionTime/
     - dotnet tool install -g dotnet-warp
-    - ./DecisionTime.ThrowBack/
+    - cd ./DecisionTime.ThrowBack/
     - dotnet-warp
     #- dotnet test
     #- chmod +x ../Scripts/publishAndZip.bash
