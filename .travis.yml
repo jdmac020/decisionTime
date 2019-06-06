@@ -13,8 +13,8 @@ script:
     - cd /home/travis/build/jdmac020/decisionTime/DecisionTime/
     - dotnet tool install -g dotnet-warp
     - cd ./DecisionTime.ThrowBack/
-    - dotnet-warp -r win-64 -o ./DecisionTimeDemo-Win
-    - dotnet-warp -r osx-64 -o ./DecisionTimeDemo-Mac
+    - dotnet-warp -r win-64 -o ./DecisionTimeDemo-Win -v
+    - dotnet-warp -r osx-64 -o ./DecisionTimeDemo-Mac -v
     #- dotnet test
     #- chmod +x ../Scripts/publishAndZip.bash
     #- 'if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ../Scripts/publishAndZip.bash; fi'
